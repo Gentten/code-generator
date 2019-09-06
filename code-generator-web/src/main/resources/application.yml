@@ -1,0 +1,17 @@
+logging:
+  config: classpath:log4j2-spring.xml
+  level:
+    io:
+      swagger:
+        models:
+          parameters:
+            AbstractSerializableParameter: error
+server:
+  port: 8888
+  servlet:
+    context-path: /code-generator
+spring:
+  application:
+    name: code-generator-web
+  profiles:
+    active: dev

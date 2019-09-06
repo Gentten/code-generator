@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.gentten</groupId>
+    <artifactId>code-generator-parent</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.6.RELEASE</version>
+        <relativePath/>
+    </parent>
+    <modules>
+        <!-- 工具类/公共-->
+        <module>code-generator-common</module>
+
+    </modules>
+
+    <!-- 统一的配置，在spring-boot-dependencies中没有的或者需要覆盖的-->
+    <properties>
+        <!-- 编码方式-->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- jdk-->
+        <java.version>1.8</java.version>
+        <!-- 日志  -->
+        <slf4j.version>1.7.25</slf4j.version>
+        <!-- lombok插件-->
+        <lombok.version>1.18.8</lombok.version>
+        <!--   java json web token     -->
+        <jjwt.version>0.10.5</jjwt.version>
+        <!-- 阿里数据库连接池，选择目的监控-->
+        <druid-boot-starter.version>1.1.18</druid-boot-starter.version>
+        <!-- mybatis-plus  简化dao service 开发 继承类或者实现接口便可或者curd功能不需要写任何实现代码-->
+        <mybatis-plus-boot-starter.version>3.1.2</mybatis-plus-boot-starter.version>
+        <!-- 分页插件 注意与 mybatis-plus 中mybatis-spring版本-->
+        <pagehelper-boot-starter.version>1.2.12</pagehelper-boot-starter.version>
+        <!-- api 文档生成-->
+        <springfox-swagger.version>2.9.2</springfox-swagger.version>
+        <!--  api 文档ui-->
+        <swagger-bootstrap-ui.version>1.9.5</swagger-bootstrap-ui.version>
+        <!-- json 转化-->
+        <jackson-dataformat-yaml.version>2.9.8</jackson-dataformat-yaml.version>
+        <!--  连接器      -->
+        <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
+        <!--      spring boot监控  -->
+        <spring-boot-admin>2.1.6</spring-boot-admin>
+    </properties>
+
+    <!-- 公有依赖-->
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+    <!-- 声明可能需要的依赖即统一依赖，需要则在dependencies中声明-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid-spring-boot-starter</artifactId>
+                <version>${druid-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fasterxml.jackson.dataformat</groupId>
+                <artifactId>jackson-dataformat-yaml</artifactId>
+                <version>${jackson-dataformat-yaml.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.baomidou</groupId>
+                <artifactId>mybatis-plus-boot-starter</artifactId>
+                <version>${mybatis-plus-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper-boot-starter.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connector-java.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- 阿里云仓库 -->
+    <repositories>
+        <repository>
+            <id>ali_maven</id>
+            <name>aliyun_maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <layout>default</layout>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories>
+
+</project>

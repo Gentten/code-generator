@@ -1,0 +1,38 @@
+package org.gentten.codegeneratorweb.domain.entity.metadata;
+
+import org.gentten.framework.common.domain.base.BaseOperatorEntity;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+
+/**
+ * 字段元数据
+ *
+ * @author : duanzhiqiang
+ * @date : 2019-09-06 15:13
+ */
+@Data
+@Builder
+@ApiModel("字段元数据")
+@EqualsAndHashCode(callSuper = false)
+public class Field extends BaseOperatorEntity {
+
+    @ApiModelProperty(value = "modelId,属于那一个模板的")
+    private String modelId;
+
+    @ApiModelProperty(value = "字段名")
+    private String name;
+
+    @ApiModelProperty(value = "注释说明")
+    private String comment;
+
+    @ApiModelProperty(value = "字段类型")
+    private String dataType;
+
+    @ApiModelProperty(value = "是否必须")
+    private Boolean require;
+
+}

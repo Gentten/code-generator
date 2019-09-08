@@ -1,5 +1,4 @@
 logging:
-  config: classpath:log4j2-spring.xml
   level:
     io:
       swagger:
@@ -15,3 +14,9 @@ spring:
     name: code-generator-web
   profiles:
     active: dev
+  thymeleaf:
+    cache: false
+    mode: text
+    prefix: classpath:/templates/
+    encoding: UTF-8
+    suffix: .java

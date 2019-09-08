@@ -1,10 +1,10 @@
 package org.gentten.codegeneratorweb.aspect;
 
 
-import com.act.framework.common.domain.base.FieldError;
-import com.act.framework.common.domain.respone.R;
-import com.act.framework.common.enums.ResponseEnum;
-import com.act.framework.common.exception.ValidateException;
+import org.gentten.framework.common.domain.base.FieldError;
+import org.gentten.framework.common.domain.respone.R;
+import org.gentten.framework.common.enums.ResponseEnum;
+import org.gentten.framework.common.exception.ValidateException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
 import lombok.extern.slf4j.Slf4j;

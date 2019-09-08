@@ -1,8 +1,8 @@
 package org.gentten.codegeneratorweb.aspect;
 
 
-import com.act.framework.common.util.JacksonUtils;
-import com.act.framework.common.util.RegexUtils;
+import org.gentten.framework.common.util.JacksonUtils;
+import org.gentten.framework.common.util.RegexUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

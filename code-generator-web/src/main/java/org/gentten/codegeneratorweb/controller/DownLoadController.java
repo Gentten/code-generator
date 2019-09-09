@@ -65,7 +65,7 @@ public class DownLoadController {
                     WebUtils.setDownloadHeader(response, "TestEntity.java");
 
                     try (PrintWriter writer = response.getWriter()) {
-                        templateEngine.process("Search", context, writer);
+                        templateEngine.process("Controller", context, writer);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

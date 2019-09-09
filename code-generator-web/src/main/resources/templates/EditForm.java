@@ -19,7 +19,7 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 @ApiModel(value = "[(${model.comment})]编辑创建表单")
-public class UserEditForm {
+public class [(${model.className})]EditForm {
 
     [# th:each = "field:${model.fields}"]
     @ApiModelProperty(value = "[(${field.comment})]")

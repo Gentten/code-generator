@@ -1,5 +1,6 @@
-package org.gentten.codegeneratorweb.domain.entity.metadata;
+package org.gentten.codegeneratorweb.domain.entity;
 
+import org.gentten.codegeneratorweb.domain.enums.JavaType;
 import org.gentten.framework.common.domain.base.BaseOperatorEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -30,7 +31,7 @@ public class Field extends BaseOperatorEntity {
     private String comment;
 
     @ApiModelProperty(value = "字段类型")
-    private String dataType;
+    private JavaType dataType;
 
     @ApiModelProperty(value = "是否必须")
     private Boolean require;

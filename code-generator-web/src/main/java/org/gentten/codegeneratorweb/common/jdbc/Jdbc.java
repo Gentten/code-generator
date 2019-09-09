@@ -1,6 +1,10 @@
-package org.gentten.codegeneratorweb.common;
+package org.gentten.codegeneratorweb.common.jdbc;
+
+import org.gentten.codegeneratorweb.domain.metadata.Column;
+import org.gentten.codegeneratorweb.domain.metadata.Table;
 
 import java.sql.Connection;
+import java.util.List;
 
 /**
  * jdbc
@@ -54,4 +58,28 @@ public interface Jdbc {
      */
     default void validateConnection(Connection conn) throws Exception {
     }
+
+    /**
+     * 获取数据库
+     *
+     * @return 数据库
+     */
+    public List<String> getDatabases();
+
+    /**
+     * 获取数据库的表
+     *
+     * @param dbname 数据库名
+     * @return 表集合
+     */
+    List<Table> getTables(String dbname);
+
+    /**
+     * 获取数据库的表的列
+     *
+     * @param dbname    数据库名
+     * @param tableName 表名
+     * @return 表列集合
+     */
+    List<Column> getColumns(String dbname, String tableName);
 }

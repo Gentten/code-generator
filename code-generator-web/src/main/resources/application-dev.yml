@@ -27,7 +27,7 @@ spring:
         login-username: admin
         login-password: 123456
     password: 123jiayouA!
-    url: jdbc:mysql://118.25.93.104:3306/act_user_center?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://118.25.93.104:3306/code-generator?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
 #mybatis-plus配置控制台打印完整带参数SQL语句
 mybatis-plus:

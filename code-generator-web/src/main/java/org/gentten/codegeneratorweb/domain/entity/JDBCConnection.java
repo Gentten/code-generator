@@ -1,4 +1,4 @@
-package org.gentten.codegeneratorweb.domain.entity.metadata;
+package org.gentten.codegeneratorweb.domain.entity;
 
 import io.swagger.annotations.ApiModelProperty;
 

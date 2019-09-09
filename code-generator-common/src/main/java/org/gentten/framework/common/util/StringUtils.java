@@ -9,9 +9,6 @@ package org.gentten.framework.common.util;
 public class StringUtils {
     /**
      * 驼峰转换为下划线
-     *
-     * @param str
-     * @return
      */
     public static String humpConvertLowCase(String str) {
         return str.replaceAll("[A-Z]{1}", "_$0").toLowerCase();
@@ -19,9 +16,6 @@ public class StringUtils {
 
     /**
      * 判断空白
-     *
-     * @param cs
-     * @return
      */
     public static boolean isBlank(final CharSequence cs) {
         return org.apache.commons.lang3.StringUtils.isBlank(cs);
@@ -29,9 +23,6 @@ public class StringUtils {
 
     /**
      * 判断非空白
-     *
-     * @param cs
-     * @return
      */
     public static boolean isNotBlank(final CharSequence cs) {
         return !isBlank(cs);
@@ -39,9 +30,6 @@ public class StringUtils {
 
     /**
      * 判断空
-     *
-     * @param cs
-     * @return
      */
     public static boolean isEmpty(final CharSequence cs) {
         return org.apache.commons.lang3.StringUtils.isEmpty(cs);
@@ -49,9 +37,6 @@ public class StringUtils {
 
     /**
      * 判断非空
-     *
-     * @param cs
-     * @return
      */
     public static boolean isNotEmpty(final CharSequence cs) {
         return !isEmpty(cs);
@@ -59,9 +44,6 @@ public class StringUtils {
 
     /**
      * 首字母大写
-     *
-     * @param str
-     * @return
      */
     public static String capitalize(final String str) {
         return org.apache.commons.lang3.StringUtils.capitalize(str);
@@ -69,9 +51,6 @@ public class StringUtils {
 
     /**
      * 首字母小写
-     *
-     * @param str
-     * @return
      */
     public static String unCapitalize(final String str) {
         return org.apache.commons.lang3.StringUtils.uncapitalize(str);
@@ -79,9 +58,6 @@ public class StringUtils {
 
     /**
      * 驼峰转换为下划线
-     *
-     * @param camelCaseName
-     * @return
      */
     public static String underscoreName(String camelCaseName) {
         StringBuilder result = new StringBuilder();
@@ -102,9 +78,6 @@ public class StringUtils {
 
     /**
      * 下划线转换为驼峰
-     *
-     * @param underscoreName
-     * @return
      */
     public static String camelCaseName(String underscoreName) {
         StringBuilder result = new StringBuilder();

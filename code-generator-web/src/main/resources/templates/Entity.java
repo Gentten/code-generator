@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 import [(${importName})];
 [/]
 /**
- * [(${model.name})]
+ * [(${model.comment})]
  *
  * @author : [(${model.operatorName})]
  * @date : [(${model.createTime})]

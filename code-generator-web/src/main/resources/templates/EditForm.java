@@ -1,4 +1,4 @@
-package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.form.edit;
+package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
 
 import io.swagger.annotations.ApiModel;
@@ -7,7 +7,9 @@ import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
+[# th:each = "importName:${imports}" th:if="${importName}"]
+import [(${importName})];
+[/]
 /**
  * [(${model.comment})]创建增加表单封装  并且根据不同的校验组检验不同的数据
  * 封装前端传递的数据 增加或者是修改

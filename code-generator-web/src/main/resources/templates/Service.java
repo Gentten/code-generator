@@ -1,4 +1,4 @@
-package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]service;
+package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.entity.[(${model.className})];
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.form.query.[(${model.className})]Query;

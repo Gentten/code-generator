@@ -27,4 +27,6 @@ public class Table {
     @ApiModelProperty(value = "数据库")
     private String database;
 
+    @ApiModelProperty(value = "键,主键要求表有一个为id的主键")
+    private Column id;
 }

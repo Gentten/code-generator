@@ -1,6 +1,6 @@
-package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.entity;
+package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
-import org.gentten.framework.common.domain.base.BaseOperatorEntity;
+import com.act.framework.common.domain.base.BaseOperatorEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
@@ -19,6 +19,7 @@ import [(${importName})];
 @Data
 @Builder
 @ApiModel("[(${model.comment})]")
+
 @EqualsAndHashCode(callSuper = false)
 public class [(${model.className})] extends BaseOperatorEntity {
     [# th:each = "field:${model.fields}"]

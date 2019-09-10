@@ -1,12 +1,10 @@
 package org.gentten.codegeneratorweb.domain.entity;
 
+import lombok.*;
 import org.gentten.codegeneratorweb.domain.enums.JavaType;
 import org.gentten.framework.common.domain.base.BaseOperatorEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 
 /**
@@ -17,6 +15,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel("字段元数据")
 @EqualsAndHashCode(callSuper = false)
 public class Field extends BaseOperatorEntity {

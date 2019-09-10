@@ -1,11 +1,9 @@
 package org.gentten.codegeneratorweb.domain.entity;
 
+import lombok.*;
 import org.gentten.framework.common.domain.base.BaseOperatorEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 
 /**
@@ -16,6 +14,8 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @ApiModel("数据库元数据")
 @EqualsAndHashCode(callSuper = false)
 public class DataBase extends BaseOperatorEntity {

@@ -23,7 +23,7 @@ public class MysqlJdbc extends AbstractJdbc {
 
     @Override
     public String urlExample() {
-        return "jdbc:mysql://localhost:3306/database";
+        return "jdbc:mysql://localhost:3306";
     }
 
     @Override

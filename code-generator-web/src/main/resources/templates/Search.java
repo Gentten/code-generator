@@ -1,11 +1,12 @@
-package  [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.form.search;
+package  [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-
-
+[# th:each = "importName:${imports}" th:if="${importName}"]
+import [(${importName})];
+[/]
 /**
  * [(${model.comment})]查询封装简单比较查询条件封装
  * 简单的逐字段eq条件查询
@@ -22,5 +23,4 @@ public class [(${model.className})]Search{
     private [(${field.dataType.name})] [(${field.name})];
 
     [/]
-
 }

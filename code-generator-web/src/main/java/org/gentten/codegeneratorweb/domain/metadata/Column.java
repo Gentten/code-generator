@@ -2,9 +2,7 @@ package org.gentten.codegeneratorweb.domain.metadata;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.gentten.codegeneratorweb.domain.enums.DataType;
 
 
@@ -17,6 +15,8 @@ import org.gentten.codegeneratorweb.domain.enums.DataType;
 @Data
 @Builder
 @ApiModel("列元数据")
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class Column {
 

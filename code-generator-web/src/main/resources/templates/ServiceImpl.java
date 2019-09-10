@@ -1,17 +1,13 @@
-package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]service.impl;
+package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.entity.[(${model.className})];
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.form.query.[(${model.className})]Query;
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]mapper.[(${model.className})]Mapper;
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]service.[(${model.className})]Service;
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
-
-import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * [(${model.comment})]服务实现
@@ -24,8 +20,6 @@ import java.util.List;
  */
 @Service
 public class [(${model.className})]ServiceImpl extends ServiceImpl<[(${model.className})]Mapper, [(${model.className})]> implements [(${model.className})]Service {
-    @Resource
-    private [(${model.className})]Service  [(${model.className})]Service;
 
     @Override
     public PageInfo<[(${model.className})]> search([(${model.className})]Query query) {

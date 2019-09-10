@@ -22,9 +22,9 @@ public class TransformUtils {
      * @param destClass 目标类类型
      * @return 实体
      */
-    public static <T extends BaseEntity> T transform(Object source, Class<T> destClass) {
+    public static <T extends BaseEntity> T transform(Object source, Class<T> destClass) throws Exception {
 
-        T destObject = null;
+        T destObject ;
         try {
             destObject = destClass.getDeclaredConstructor().newInstance();
             // getDeclaredFields 只能获取当前的声明的字段，不包含父类
@@ -37,6 +37,7 @@ public class TransformUtils {
             }
         } catch (Exception e) {
             log.error("转化失败：" + source.getClass() + "->" + destClass + "reason:" + e.getMessage());
+            throw e;
         }
         return destObject;
     }
@@ -49,7 +50,7 @@ public class TransformUtils {
      * @param field 字段
      * @return 需要转化到字段的名字
      */
-    public static String getTransformField(Field field) {
+    private static String getTransformField(Field field) {
         Transform annotation = field.getAnnotation(Transform.class);
         if (null == annotation || EmptyUtils.isEmpty(annotation.value())) {
             return field.getName();

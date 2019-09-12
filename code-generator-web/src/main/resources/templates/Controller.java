@@ -6,6 +6,7 @@ import com.act.framework.common.util.TransformUtils;
 import com.act.framework.common.validation.group.Create;
 import com.act.framework.common.validation.group.Update;
 import com.github.pagehelper.PageInfo;
+//todo:后面改成代码模板之间的依赖
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.form.edit.[(${model.className})]EditForm;
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]service.[(${model.className})]Service;
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.entity.[(${model.className})];

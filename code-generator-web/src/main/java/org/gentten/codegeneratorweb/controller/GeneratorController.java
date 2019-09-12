@@ -20,13 +20,10 @@ import org.gentten.framework.common.util.StringUtils;
 import org.gentten.framework.common.util.WebUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.context.Context;
 import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -45,16 +42,13 @@ import java.util.stream.Collectors;
 public class GeneratorController {
 
     @Resource
-    private TemplateEngine templateEngine;
-
-    @Resource
     private GeneratorUtils generatorUtils;
 
     @Resource
     private CodeModuleService codeModuleService;
 
     @PostMapping("/codeModuleGroup_1171316855797764097/{userId}")
-    @ApiOperation("根据数据库连接，生成代码并下载")
+    @ApiOperation("act-framework1.0.0增删改查，根据数据库连接（要求表有一个字段名为id的主键,默认生成实体是继承OperatorInfo，注意自行选择哪个基础实体,以及去掉和继承实体重复的字段)，生成代码并下载")
     public void generatorAndDownload(@PathVariable String userId, @Validated @RequestBody CodeGeneratorForm form, @ApiIgnore HttpServletResponse response) throws Exception {
         //连接数据库
         MysqlJdbc mysqlJdbc = new MysqlJdbc(form.getJdbcUrl() + "/" + form.getDbName(), form.getUsername(), form.getPassword());
@@ -75,7 +69,8 @@ public class GeneratorController {
             //构建model
             Model model = Model.builder()
                     .className(StringUtils.capitalize(StringUtils.camelCaseName(table.getName())))
-                    .comment(table.getComment())
+                    //去掉换行和回车符避免生成代码时被换行
+                    .comment(table.getComment().replaceAll("[\\r|\\n|]", " "))
                     .fields(fieldList)
                     .packageName(form.getPackageName())
                     .moduleName(form.getModuleName())

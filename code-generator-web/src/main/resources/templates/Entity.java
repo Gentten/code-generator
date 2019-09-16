@@ -19,7 +19,8 @@ import [(${importName})];
 @Data
 @Builder
 @ApiModel("[(${model.comment})]")
-
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
 public class [(${model.className})] extends BaseOperatorEntity {
     [# th:each = "field:${model.fields}"]

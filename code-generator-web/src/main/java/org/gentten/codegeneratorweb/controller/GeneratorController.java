@@ -3,6 +3,7 @@ package org.gentten.codegeneratorweb.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Arrays;
 import org.gentten.codegeneratorweb.common.converter.DataConverter;
 import org.gentten.codegeneratorweb.common.jdbc.MysqlJdbc;
 import org.gentten.codegeneratorweb.domain.entity.CodeModule;
@@ -24,6 +25,7 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -70,7 +72,7 @@ public class GeneratorController {
             Model model = Model.builder()
                     .className(StringUtils.capitalize(StringUtils.camelCaseName(table.getName())))
                     //去掉换行和回车符避免生成代码时被换行
-                    .comment(table.getComment().replaceAll("[\\r|\\n|]", " "))
+                    .comment(table.getComment().replaceAll("[\\r|\\n]", " "))
                     .fields(fieldList)
                     .packageName(form.getPackageName())
                     .moduleName(form.getModuleName())
@@ -80,13 +82,15 @@ public class GeneratorController {
             model.setCreateTime(new Date());
             model.setOperatorName("code-generator");
 
+            //暂时写死
             List<CodeModule> codeModules = codeModuleService.getByGroupId("1171316855797764097");
             CheckUtils.notEmpty(codeModules, "当前模块组没有关联模块或者模板组不存在");
             //生成代码
-            generatorUtils.generatorCode(codeModules, model, userId, "1171316855797764097");
-
+            generatorUtils.generatorCodeByModel(model, userId, "1171316855797764097", codeModules.toArray(new CodeModule[0]));
+            //设置为文件下载
             WebUtils.setDownloadHeader(response, table.getName() + ".zip");
-            ZipUtils.toZip(generatorUtils.getModuleSavePath("1171316855797764097", userId), response.getOutputStream());
+            //压缩
+            ZipUtils.toZip(generatorUtils.getModuleSavePath(userId, "1171316855797764097"), response.getOutputStream());
 
         } else {
             throw new SysException("表不存在");

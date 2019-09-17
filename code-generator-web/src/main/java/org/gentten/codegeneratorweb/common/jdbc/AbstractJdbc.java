@@ -58,7 +58,7 @@ public abstract class AbstractJdbc implements Jdbc {
             if (this.password != null) {
                 props.setProperty("password", this.password);
             }
-            conn = DriverManager.getConnection(this.jdbcUrl, props);
+            conn = DriverManager.getConnection(this.jdbcUrl+"?useSSL=false", props);
             validateConnection(conn);
         } catch (ClassNotFoundException e) {
             throw new SysException(String.format("数据库连接失败，找不到驱动[%s]", this.driver), e);

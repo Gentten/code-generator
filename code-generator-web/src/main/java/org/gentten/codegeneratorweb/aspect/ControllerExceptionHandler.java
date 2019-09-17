@@ -4,6 +4,7 @@ package org.gentten.codegeneratorweb.aspect;
 import org.gentten.framework.common.domain.base.FieldError;
 import org.gentten.framework.common.domain.respone.R;
 import org.gentten.framework.common.enums.ResponseEnum;
+import org.gentten.framework.common.exception.SysException;
 import org.gentten.framework.common.exception.ValidateException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.collect.Lists;
@@ -45,6 +46,16 @@ public class ControllerExceptionHandler {
     public R handleException(Exception e) {
         log.error(e.getMessage(), e);
         return R.error(e);
+    }
+
+    /**
+     * 处理业务异常
+     */
+    @ExceptionHandler(value = SysException.class)
+    @ResponseBody
+    public R handleSysException(SysException e) {
+        log.error(e.getMessage(), e);
+        return R.error(e.getMessage(), null);
     }
 
     /**

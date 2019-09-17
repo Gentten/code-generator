@@ -92,7 +92,7 @@ public class GeneratorController {
             ZipUtils.toZip(generatorUtils.getModuleSavePath(userId, "1171316855797764097"), response.getOutputStream());
 
         } else {
-            throw new SysException("表不存在");
+            throw new SysException(String.format("找不到指定的表:%s,请检查参数", form.getTableName()));
         }
     }
 

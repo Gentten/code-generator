@@ -61,7 +61,9 @@ public class GeneratorUtils {
         //目录不存在则创建
         if (!file.exists()) {
             if (!file.mkdirs()) {
-                throw new SysException(String.format("创建目录失败:%s", file.getPath()));
+                if (!file.exists()) {
+                    throw new SysException(String.format("创建目录失败:%s", file.getPath()));
+                }
             }
         }
         String saveName = getSaveName(codeModule);

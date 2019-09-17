@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 
 
 /**
- * [(${model.comment})]mapper
+ * [(${model.comment})]([(${model.className})])mapper
  * <p>
  * 1、继承BaseMapper{@link BaseMapper}直接或者curd功能  泛型指定对应的实体
  * 2、@Mapper 如mybatis

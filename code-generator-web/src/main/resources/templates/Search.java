@@ -8,14 +8,14 @@ import lombok.Data;
 import [(${importName})];
 [/]
 /**
- * [(${model.comment})]查询封装简单比较查询条件封装
+ * [(${model.comment})]([(${model.className})])查询封装简单比较查询条件封装
  * 简单的逐字段eq条件查询
  *
  * @author : [(${model.operatorName})]
  * @date : [(${model.createTime})]
  */
 @Data
-@ApiModel(value = "[(${model.comment})]简单比较查询")
+@ApiModel(value = "[(${model.comment})]([(${model.className})])简单比较查询")
 public class [(${model.className})]Search{
 
     [# th:each = "field:${model.fields}"]

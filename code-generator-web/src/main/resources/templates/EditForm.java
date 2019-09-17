@@ -20,7 +20,7 @@ import [(${importName})];
  * @date : [(${model.createTime})]
  */
 @Data
-@ApiModel(value = "[(${model.comment})]编辑创建表单")
+@ApiModel(value = "[(${model.comment})]([(${model.className})])编辑创建表单")
 public class [(${model.className})]EditForm {
 
     [# th:each = "field:${model.fields}"]

@@ -6,7 +6,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 
 /**
- * [(${model.comment})]服务
+ * [(${model.comment})]([(${model.className})])服务
  * 1、继承IService接口{@link IService}直接获得curd方法不用自己去声明  泛型指定对应的实体
  * 2、当IService不满足业务需求时，自己自定义方法
  *

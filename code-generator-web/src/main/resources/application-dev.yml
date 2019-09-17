@@ -38,3 +38,4 @@ logging:
   # map的形式 包名+等级
   level:
     org.gentten: debug
+  path: ./log

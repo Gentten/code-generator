@@ -27,7 +27,7 @@ import java.util.List;
  * @author : [(${model.operatorName})]
  * @date : [(${model.createTime})]
  */
-@Api("[(${model.comment})]管理")
+@Api("[(${model.comment})]([(${model.className})])管理")
 @RequestMapping("[(${model.varName})]")
 @RestController
 public class [(${model.className})]Controller {

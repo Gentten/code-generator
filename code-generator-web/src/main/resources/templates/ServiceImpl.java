@@ -10,7 +10,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 /**
- * [(${model.comment})]服务实现
+ * [(${model.comment})]([(${model.className})])服务实现
  * 1、继承ServiceImpl接口{@link ServiceImpl}便可实现继承curd功能即AR模式  泛型指定对应的mapper和实体
  * 2、实现自己定义的方法
  * 3、父类中已经将此实体的对应的mapper已经注入了，不需要再次注入。当然你可以注入其他mapper

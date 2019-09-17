@@ -23,7 +23,7 @@ import java.util.Map;
 
 
 /**
- * [(${model.comment})]查询封装查询条件
+ * [(${model.comment})]([(${model.className})])查询封装查询条件
  * 原因是当需求修改时需要添加查询添加条件，可以减少controller层代码的修改
  * <p>
  * QueryWrapper 支持很多查询  参考https://mp.baomidou.com/guide/wrapper.html#abstractwrapper
@@ -33,7 +33,7 @@ import java.util.Map;
  * @date : [(${model.createTime})]
  */
 @Data
-@ApiModel(value = "[(${model.comment})]编辑创建表单")
+@ApiModel(value = "[(${model.comment})]([(${model.className})])编辑创建表单")
 public class [(${model.className})]Query extends BaseQuery<[(${model.className})]> {
     /**
      * 此处可替换成其他包装查询字段，但变量名需要定义为search 与前端约定的。然后在buildWrapper 实现自己多字段复杂查询

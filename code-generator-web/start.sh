@@ -1,8 +1,12 @@
-﻿#删除容器
+﻿# 删除容器
 docker rm -f code-generator
-#删除镜像
+# 删除镜像
 #docker rmi -f code-generator
 # 创建镜像
 docker build -t code-generator/code-generator  /opt/code-generator
-#创建并允许容器
-docker run  -p 8888:8888 --name code-generator code-generator/code-generator
+# 运行容器
+docker run  -d -p 8888:8888 -u root --name code-generator code-generator/code-generator
+# 睡眠 1m  等待启动
+sleep 1m
+# 查看最近10m中的日志 已检查启动情况
+docker logs --since 10m code-generator

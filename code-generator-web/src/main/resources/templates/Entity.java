@@ -18,7 +18,7 @@ import [(${importName})];
  */
 @Data
 @Builder
-@ApiModel("[(${model.comment})]")
+@ApiModel("[(${model.comment})]([(${model.className})])实体")
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)

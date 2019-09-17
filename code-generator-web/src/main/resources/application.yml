@@ -5,6 +5,8 @@ logging:
         models:
           parameters:
             AbstractSerializableParameter: error
+  path: ./logs
+  file: code-generator-web.log
 server:
   port: 8888
   servlet:

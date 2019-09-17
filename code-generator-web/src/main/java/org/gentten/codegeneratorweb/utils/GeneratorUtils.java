@@ -1,7 +1,7 @@
 package org.gentten.codegeneratorweb.utils;
 
 import lombok.extern.slf4j.Slf4j;
-import org.gentten.codegeneratorweb.domain.entity.CodeModule;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
 import org.gentten.codegeneratorweb.domain.entity.Field;
 import org.gentten.codegeneratorweb.domain.entity.Model;
 import org.gentten.framework.common.util.StringUtils;
@@ -43,9 +43,9 @@ public class GeneratorUtils {
      * @param model       领域对象
      * @param userId      用户id
      * @param id          id
-     * @param codeModules 代码模板
+     * @param codeTemplates 代码模板
      */
-    public void generatorCodeByModel(Model model, String userId, String id, CodeModule... codeModules) {
+    public void generatorCodeByModel(Model model, String userId, String id, CodeTemplate... codeTemplates) {
         //创建Context对象(存放Model)
         Context context = new Context();
         //1、需要一个领域对象
@@ -56,35 +56,35 @@ public class GeneratorUtils {
         //3、创建之前先清空根临时目录
         FileUtils.clearDir(new File(getModuleSavePath(userId, id)));
         //4、遍历生成代码
-        Arrays.asList(codeModules).forEach(codeModule -> {
+        Arrays.asList(codeTemplates).forEach(codeModule -> {
             codeModule.setModel(model);
             generatorCode(codeModule, context, userId, id);
         });
     }
 
-    private void generatorCode(CodeModule codeModule, Context context, String userId, String id) {
+    private void generatorCode(CodeTemplate codeTemplate, Context context, String userId, String id) {
         //1、代码生成的后一段包名
-        context.setVariable("module", codeModule);
+        context.setVariable("module", codeTemplate);
         //2、获取生成代码保存目录 按用户名和模板或者模板id创建的临时目录
-        String fileSavePath = getFileSavePath(codeModule, userId, id);
+        String fileSavePath = getFileSavePath(codeTemplate, userId, id);
         //3、目录不存在则创建，生成文件需要父目录存在
         File baseSaveDir = new File(fileSavePath);
         FileUtils.mkdirs(baseSaveDir);
         //4、获取保存的文件名和后缀
-        String saveName = getSaveName(codeModule);
+        String saveName = getSaveName(codeTemplate);
         //5、生成代码
         try (FileWriter fileWriter = new FileWriter(fileSavePath + File.separator + saveName)) {
-            templateEngine.process(codeModule.getCodeModuleName(), context, fileWriter);
+            templateEngine.process(codeTemplate.getCodeTemplateName(), context, fileWriter);
         } catch (IOException e) {
-            log.error(String.format("代码生成失败：module %s", codeModule.toString()), e);
+            log.error(String.format("代码生成失败：module %s", codeTemplate.toString()), e);
         }
     }
 
-    private String getSaveName(CodeModule codeModule) {
-        if (codeModule.getIsContainsName()) {
-            return codeModule.getModel().getClassName() + codeModule.getCodeModuleName() + ".java";
+    private String getSaveName(CodeTemplate codeTemplate) {
+        if (codeTemplate.getIsContainsName()) {
+            return codeTemplate.getModel().getClassName() + codeTemplate.getCodeTemplateName() + "."+codeTemplate.getFileSuffix();
         } else {
-            return codeModule.getModel().getClassName() + ".java";
+            return codeTemplate.getModel().getClassName() + "."+codeTemplate.getFileSuffix();
         }
     }
 
@@ -121,21 +121,21 @@ public class GeneratorUtils {
     /**
      * 获取某个模块生成代码的保存路径（带包名和划分模块名），去保存使用
      *
-     * @param codeModule ，codeModule
+     * @param codeTemplate ，codeModule
      * @param userId     用户id
      * @param id         模块或者模板组id 用于临时文件夹的区分
      * @return 路径
      */
-    public String getFileSavePath(CodeModule codeModule, String userId, String id) {
+    public String getFileSavePath(CodeTemplate codeTemplate, String userId, String id) {
 
-        Model model = codeModule.getModel();
+        Model model = codeTemplate.getModel();
         StringBuffer res = new StringBuffer(getModuleSavePath(userId, id));
         //model 设置属于哪个module
         appendPackage(res, model.getPackageName());
         //代码划分模块
         appendModule(res, model.getModuleName());
         //module 设置生成之后多增加的包
-        appendPackage(res, codeModule.getPackageName());
+        appendPackage(res, codeTemplate.getPackageName());
         return res.toString();
     }
 

@@ -1,6 +1,6 @@
 package org.gentten.codegeneratorweb.mapper;
 
-import org.gentten.codegeneratorweb.domain.entity.ModuleGroupRelation;
+import org.gentten.codegeneratorweb.domain.entity.TemplateGroupRelation;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,6 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date : Tue Sep 10 11:50:32 CST 2019
  */
 @Mapper
-public interface ModuleGroupRelationMapper extends BaseMapper<ModuleGroupRelation> {
+public interface ModuleGroupRelationMapper extends BaseMapper<TemplateGroupRelation> {
 
 }

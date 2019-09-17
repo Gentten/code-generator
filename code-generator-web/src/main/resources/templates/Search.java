@@ -19,7 +19,7 @@ import [(${importName})];
 public class [(${model.className})]Search{
 
     [# th:each = "field:${model.fields}"]
-    @ApiModelProperty(value = "[(${field.comment})]")
+    @ApiModelProperty(value = "比较查询条件：[(${field.comment})]")
     private [(${field.dataType.name})] [(${field.name})];
 
     [/]

@@ -1,7 +1,7 @@
 package org.gentten.codegeneratorweb.service.impl;
 
-import org.gentten.codegeneratorweb.domain.entity.CodeModule;
-import org.gentten.codegeneratorweb.domain.form.query.CodeModuleQuery;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
+import org.gentten.codegeneratorweb.domain.form.query.CodeTemplateQuery;
 import org.gentten.codegeneratorweb.mapper.CodeModuleMapper;
 import org.gentten.codegeneratorweb.service.CodeModuleService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
@@ -22,17 +22,17 @@ import java.util.List;
  * @date : Tue Sep 10 12:52:59 CST 2019
  */
 @Service
-public class CodeModuleServiceImpl extends ServiceImpl<CodeModuleMapper, CodeModule> implements CodeModuleService {
+public class CodeModuleServiceImpl extends ServiceImpl<CodeModuleMapper, CodeTemplate> implements CodeModuleService {
 
     @Override
-    public PageInfo<CodeModule> search(CodeModuleQuery query) {
+    public PageInfo<CodeTemplate> search(CodeTemplateQuery query) {
         //不分页则1到99999
         return PageHelper.startPage(query.getListMode() ? 1 : query.getPageNum(), query.getListMode() ? 999999 : query.getPageSize())
                 .doSelectPageInfo(() -> list(query.buildWrapper()));
     }
 
     @Override
-    public List<CodeModule> getByGroupId(String groupId) {
+    public List<CodeTemplate> getByGroupId(String groupId) {
         return baseMapper.getByGroupId(groupId);
     }
 

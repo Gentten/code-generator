@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
  * @date : 2019-09-09 16:59
  */
 @Data
-@ApiModel("通过数据连接生成代码")
+@ApiModel("通过数据连接生成代码表单")
 public class CodeGeneratorForm {
     @NotEmpty
     @ApiModelProperty(value = "数据库连接,目前只支持mysql", example = "jdbc:mysql://localhost:3306", required = true)
@@ -33,11 +33,11 @@ public class CodeGeneratorForm {
     @ApiModelProperty(value = "表名,数据库中表名字", example = "sys_user", required = true)
     private String tableName;
 
-    @ApiModelProperty(value = "模板名需要英文，即在包名下划分模板", example = "user")
+    @ApiModelProperty(value = "模板名需要英文，即在包名下划分模块", example = "user")
     private String moduleName;
 
     @NotEmpty
-    @ApiModelProperty(value = "包名需要英文", example = "com.act.framework", required = true)
+    @ApiModelProperty(value = "包名需要英文，全小写逗号隔开", example = "com.act.framework", required = true)
     private String packageName;
 
 }

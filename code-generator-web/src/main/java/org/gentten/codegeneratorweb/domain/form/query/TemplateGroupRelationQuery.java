@@ -1,7 +1,8 @@
 package org.gentten.codegeneratorweb.domain.form.query;
 
-import org.gentten.codegeneratorweb.domain.entity.CodeModuleGroup;
-import org.gentten.codegeneratorweb.domain.form.search.CodeModuleGroupSearch;
+
+import org.gentten.codegeneratorweb.domain.entity.TemplateGroupRelation;
+import org.gentten.codegeneratorweb.domain.form.search.ModuleGroupRelationSearch;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -23,28 +24,28 @@ import java.util.Map;
 
 
 /**
- * 代码模板组查询封装查询条件
+ * 代码模板组关联表查询封装查询条件
  * 原因是当需求修改时需要添加查询添加条件，可以减少controller层代码的修改
  * <p>
  * QueryWrapper 支持很多查询  参考https://mp.baomidou.com/guide/wrapper.html#abstractwrapper
  * {@link BaseQuery}BaseQuery 封装常用的查询条件（实现各种类型的查询） 可选
  *
  * @author : code-generator
- * @date : Tue Sep 10 12:47:59 CST 2019
+ * @date : Tue Sep 10 12:46:04 CST 2019
  */
 @Data
-@ApiModel(value = "代码模板组编辑创建表单")
-public class CodeModuleGroupQuery extends BaseQuery<CodeModuleGroup> {
+@ApiModel(value = "代码模板组关联表编辑创建表单")
+public class TemplateGroupRelationQuery extends BaseQuery<TemplateGroupRelation> {
     /**
      * 此处可替换成其他包装查询字段，但变量名需要定义为search 与前端约定的。然后在buildWrapper 实现自己多字段复杂查询
      * 需要注意   column 是数据库字段名字
      */
     @ApiModelProperty(value = "查询参数（以and 连接条件并以eq的形式）")
-    private CodeModuleGroupSearch search;
+    private ModuleGroupRelationSearch search;
 
     @Override
-    public QueryWrapper<CodeModuleGroup> buildWrapper() {
-        QueryWrapper<CodeModuleGroup> queryWrapper = new QueryWrapper<>();
+    public QueryWrapper<TemplateGroupRelation> buildWrapper() {
+        QueryWrapper<TemplateGroupRelation> queryWrapper = new QueryWrapper<>();
         //查询条件
         if (search != null) {
             Map<String, Object> searchMap = getSearchFields(search);

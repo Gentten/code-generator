@@ -34,7 +34,7 @@ public class ZipUtils {
             File sourceFile = new File(srcDir);
             compress(sourceFile, zos, sourceFile.getName());
             long end = System.currentTimeMillis();
-            log.info(String.format("压缩完成，耗时：%sms", end - start));
+            log.info(String.format("压缩完成，耗时：%s ms", end - start));
         } catch (Exception e) {
             log.info("压缩失败 ", e);
         }
@@ -42,12 +42,12 @@ public class ZipUtils {
 
 
     /**
-     * 递归压缩方法
+     * 递归压缩
      *
      * @param sourceFile 源文件
      * @param zos        zip输出流
      * @param name       压缩后的名称
-     * @throws Exception y
+     * @throws Exception 异常
      */
     private static void compress(File sourceFile, ZipOutputStream zos, String name) throws Exception {
         //文件
@@ -56,6 +56,9 @@ public class ZipUtils {
             // 向zip输出流中添加一个zip实体，构造器中name为zip实体的文件的名字
             zos.putNextEntry(new ZipEntry(name));
             // copy文件到zip输出流中
+            if (log.isDebugEnabled()) {
+                log.debug("压缩文件：{}", sourceFile.getPath());
+            }
             int len;
             try (FileInputStream in = new FileInputStream(sourceFile)) {
                 while ((len = in.read(buf)) != -1) {
@@ -70,9 +73,12 @@ public class ZipUtils {
         File[] listFiles = sourceFile.listFiles();
         //空目录
         if (EmptyUtils.isEmpty(listFiles)) {
+            if (log.isDebugEnabled()) {
+                log.debug("压缩空文件夹：{}", sourceFile.getPath());
+            }
             // 需要保留原来的文件结构时,需要对空文件夹进行处理
             // 空文件夹的处理
-            zos.putNextEntry(new ZipEntry(name + "/"));
+            zos.putNextEntry(new ZipEntry(name + File.separator));
             // 没有文件，不需要文件的copy
             zos.closeEntry();
 
@@ -80,8 +86,7 @@ public class ZipUtils {
             for (File file : listFiles) {
                 // 注意：file.getName()前面需要带上父文件夹的名字加一斜杠,
                 // 不然最后压缩包中就不能保留原来的文件结构,即：所有文件都跑到压缩包根目录下了
-                compress(file, zos, name + "/" + file.getName());
-
+                compress(file, zos, name + File.separator + file.getName());
             }
         }
     }

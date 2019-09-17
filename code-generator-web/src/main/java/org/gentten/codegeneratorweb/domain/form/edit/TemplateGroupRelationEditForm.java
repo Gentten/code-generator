@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
  * @date : 2019-09-10 13:57
  */
 @Data
-public class ModuleGroupRelationEditForm {
+public class TemplateGroupRelationEditForm {
     @ApiModelProperty(value = "表id")
     private String id;
 

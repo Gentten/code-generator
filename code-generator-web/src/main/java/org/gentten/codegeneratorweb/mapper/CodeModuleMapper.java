@@ -2,7 +2,7 @@ package org.gentten.codegeneratorweb.mapper;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.gentten.codegeneratorweb.domain.entity.CodeModule;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -20,14 +20,14 @@ import java.util.List;
  * @date : Tue Sep 10 11:54:28 CST 2019
  */
 @Mapper
-public interface CodeModuleMapper extends BaseMapper<CodeModule> {
+public interface CodeModuleMapper extends BaseMapper<CodeTemplate> {
     /**
      * 按模板组获取 groupId
      *
      * @param groupId 模板组id
      * @return 模板
      */
-    @Select("select cm.* from code_module cm join  module_group_relation mgr on cm.id  = mgr.module_id where mgr.group_id=#{groupId}")
-    List<CodeModule> getByGroupId(@Param("groupId") String groupId);
+    @Select("select cm.* from code_template cm join  template_group_relation mgr on cm.id  = mgr.template_id where mgr.group_id=#{groupId}")
+    List<CodeTemplate> getByGroupId(@Param("groupId") String groupId);
 
 }

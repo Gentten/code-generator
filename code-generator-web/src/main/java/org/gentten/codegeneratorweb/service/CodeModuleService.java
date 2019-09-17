@@ -1,8 +1,7 @@
 package org.gentten.codegeneratorweb.service;
 
-import org.apache.ibatis.annotations.Param;
-import org.gentten.codegeneratorweb.domain.entity.CodeModule;
-import org.gentten.codegeneratorweb.domain.form.query.CodeModuleQuery;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
+import org.gentten.codegeneratorweb.domain.form.query.CodeTemplateQuery;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 
@@ -16,14 +15,14 @@ import java.util.List;
  * @author : code-generator
  * @date : Tue Sep 10 11:56:31 CST 2019
  */
-public interface CodeModuleService extends IService<CodeModule> {
+public interface CodeModuleService extends IService<CodeTemplate> {
     /**
      * 代码模板查询
      *
      * @param query 查询条件
      * @return 查询结果
      */
-    PageInfo<CodeModule> search(CodeModuleQuery query);
+    PageInfo<CodeTemplate> search(CodeTemplateQuery query);
 
     /**
      * 按模板组获取 groupId
@@ -31,5 +30,5 @@ public interface CodeModuleService extends IService<CodeModule> {
      * @param groupId 模板组id
      * @return 模板
      */
-    List<CodeModule> getByGroupId(String groupId);
+    List<CodeTemplate> getByGroupId(String groupId);
 }

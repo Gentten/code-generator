@@ -15,9 +15,9 @@ import org.gentten.framework.common.domain.base.BaseOperatorEntity;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@ApiModel("代码模块组")
+@ApiModel("代码模板组")
 @EqualsAndHashCode(callSuper = false)
-public class CodeModuleGroup extends BaseOperatorEntity {
+public class CodeTemplateGroup extends BaseOperatorEntity {
 
     @ApiModelProperty(value = "代码模块组名字")
     private String name;

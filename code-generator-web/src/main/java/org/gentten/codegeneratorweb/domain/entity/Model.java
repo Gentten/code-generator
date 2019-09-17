@@ -1,6 +1,7 @@
 package org.gentten.codegeneratorweb.domain.entity;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.gentten.codegeneratorweb.domain.metadata.Column;
 import org.gentten.framework.common.domain.base.BaseOperatorEntity;
@@ -45,15 +46,18 @@ public class Model extends BaseOperatorEntity {
     /**
      * 以下为非数据库字段
      */
+    @JsonIgnore
     @TableField(exist = false)
     @ApiModelProperty("字段集合")
     private List<Field> fields;
 
     @TableField(exist = false)
     @ApiModelProperty("className的首字母小写")
+    @JsonIgnore
     private String varName;
 
     @TableField(exist = false)
+    @JsonIgnore
     @ApiModelProperty(value = "键,主键要求表有一个为id的主键")
     private Field tableId;
 }

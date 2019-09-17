@@ -1,7 +1,7 @@
 package org.gentten.codegeneratorweb.service.impl;
 
-import org.gentten.codegeneratorweb.domain.entity.ModuleGroupRelation;
-import org.gentten.codegeneratorweb.domain.form.query.ModuleGroupRelationQuery;
+import org.gentten.codegeneratorweb.domain.entity.TemplateGroupRelation;
+import org.gentten.codegeneratorweb.domain.form.query.TemplateGroupRelationQuery;
 import org.gentten.codegeneratorweb.mapper.ModuleGroupRelationMapper;
 import org.gentten.codegeneratorweb.service.ModuleGroupRelationService;
 
@@ -21,10 +21,10 @@ import org.springframework.stereotype.Service;
  * @date : Tue Sep 10 12:51:33 CST 2019
  */
 @Service
-public class ModuleGroupRelationServiceImpl extends ServiceImpl<ModuleGroupRelationMapper, ModuleGroupRelation> implements ModuleGroupRelationService {
+public class ModuleGroupRelationServiceImpl extends ServiceImpl<ModuleGroupRelationMapper, TemplateGroupRelation> implements ModuleGroupRelationService {
 
     @Override
-    public PageInfo<ModuleGroupRelation> search(ModuleGroupRelationQuery query) {
+    public PageInfo<TemplateGroupRelation> search(TemplateGroupRelationQuery query) {
         //不分页则1到99999
         return PageHelper.startPage(query.getListMode() ? 1 : query.getPageNum(), query.getListMode() ? 999999 : query.getPageSize())
                 .doSelectPageInfo(() -> list(query.buildWrapper()));

@@ -8,7 +8,7 @@ import lombok.Data;
  * @date : 2019-09-10 13:57
  */
 @Data
-public class CodeModuleEditForm {
+public class CodeTemplateEditForm {
 
     @ApiModelProperty(value = "表id")
     private String id;

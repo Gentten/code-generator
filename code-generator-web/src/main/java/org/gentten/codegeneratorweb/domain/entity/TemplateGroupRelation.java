@@ -19,7 +19,7 @@ import io.swagger.annotations.ApiModelProperty;
 @AllArgsConstructor
 @ApiModel("代码模板组关联表")
 @EqualsAndHashCode(callSuper = false)
-public class ModuleGroupRelation extends BaseOperatorEntity {
+public class TemplateGroupRelation extends BaseOperatorEntity {
 
 
     @ApiModelProperty(value = "代码模板组id")
@@ -29,7 +29,7 @@ public class ModuleGroupRelation extends BaseOperatorEntity {
     private String moduleId;
 
     @ApiModelProperty(value = "代码模板文件名，冗余字段")
-    private String codeModuleName;
+    private String codeTemplateName;
 
     @TableLogic
     @ApiModelProperty(value = "逻辑删除字段 1删除0未删除")

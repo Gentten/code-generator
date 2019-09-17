@@ -1,6 +1,6 @@
 package org.gentten.codegeneratorweb.mapper;
 
-import org.gentten.codegeneratorweb.domain.entity.CodeModuleGroup;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplateGroup;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,6 +16,6 @@ import org.apache.ibatis.annotations.Mapper;
  * @date : Tue Sep 10 11:53:05 CST 2019
  */
 @Mapper
-public interface CodeModuleGroupMapper extends BaseMapper<CodeModuleGroup> {
+public interface CodeModuleGroupMapper extends BaseMapper<CodeTemplateGroup> {
 
 }

@@ -3,10 +3,9 @@ package org.gentten.codegeneratorweb.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.util.Arrays;
 import org.gentten.codegeneratorweb.common.converter.DataConverter;
 import org.gentten.codegeneratorweb.common.jdbc.MysqlJdbc;
-import org.gentten.codegeneratorweb.domain.entity.CodeModule;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
 import org.gentten.codegeneratorweb.domain.entity.Field;
 import org.gentten.codegeneratorweb.domain.entity.Model;
 import org.gentten.codegeneratorweb.domain.form.edit.CodeGeneratorForm;
@@ -25,7 +24,6 @@ import springfox.documentation.annotations.ApiIgnore;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -50,7 +48,8 @@ public class GeneratorController {
     private CodeModuleService codeModuleService;
 
     @PostMapping("/codeModuleGroup_1171316855797764097/{userId}")
-    @ApiOperation("act-framework1.0.0增删改查，根据数据库连接（要求表有一个字段名为id的主键,默认生成实体是继承OperatorInfo，注意自行选择哪个基础实体,以及去掉和继承实体重复的字段)，生成代码并下载")
+    @ApiOperation("act-framework1.0.0增删改查，根据数据库连接生成代码并下载\n" +
+            "（要求表有一个字段名为id的主键,默认生成实体是继承OperatorInfo，注意自行选择哪个基础实体,以及去掉和继承实体重复的字段)")
     public void generatorAndDownload(@PathVariable String userId, @Validated @RequestBody CodeGeneratorForm form, @ApiIgnore HttpServletResponse response) throws Exception {
         //连接数据库
         MysqlJdbc mysqlJdbc = new MysqlJdbc(form.getJdbcUrl() + "/" + form.getDbName(), form.getUsername(), form.getPassword());
@@ -82,11 +81,11 @@ public class GeneratorController {
             model.setCreateTime(new Date());
             model.setOperatorName("code-generator");
 
-            //暂时写死
-            List<CodeModule> codeModules = codeModuleService.getByGroupId("1171316855797764097");
-            CheckUtils.notEmpty(codeModules, "当前模块组没有关联模块或者模板组不存在");
+            //暂时写死 todo：通过界面选择生成代码模块
+            List<CodeTemplate> codeTemplates = codeModuleService.getByGroupId("1171316855797764097");
+            CheckUtils.notEmpty(codeTemplates, "当前模块组没有关联模块或者模板组不存在");
             //生成代码
-            generatorUtils.generatorCodeByModel(model, userId, "1171316855797764097", codeModules.toArray(new CodeModule[0]));
+            generatorUtils.generatorCodeByModel(model, userId, "1171316855797764097", codeTemplates.toArray(new CodeTemplate[0]));
             //设置为文件下载
             WebUtils.setDownloadHeader(response, table.getName() + ".zip");
             //压缩

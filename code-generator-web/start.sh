@@ -8,5 +8,5 @@ docker build -t code-generator/code-generator  /opt/code-generator
 docker run  -d -p 8888:8888 -u root --name code-generator code-generator/code-generator
 # 睡眠 1m  等待启动
 sleep 1m
-# 查看最近10m中的日志 已检查启动情况
+# 查看最近10m中的日志 以检查启动情况
 docker logs --since 10m code-generator

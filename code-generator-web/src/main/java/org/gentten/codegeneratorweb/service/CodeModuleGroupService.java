@@ -1,7 +1,7 @@
 package org.gentten.codegeneratorweb.service;
 
-import org.gentten.codegeneratorweb.domain.entity.CodeModuleGroup;
-import org.gentten.codegeneratorweb.domain.form.query.CodeModuleGroupQuery;
+import org.gentten.codegeneratorweb.domain.entity.CodeTemplateGroup;
+import org.gentten.codegeneratorweb.domain.form.query.CodeTemplateGroupQuery;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.github.pagehelper.PageInfo;
 
@@ -13,14 +13,14 @@ import com.github.pagehelper.PageInfo;
  * @author : code-generator
  * @date : Tue Sep 10 12:49:55 CST 2019
  */
-public interface CodeModuleGroupService extends IService<CodeModuleGroup> {
+public interface CodeModuleGroupService extends IService<CodeTemplateGroup> {
     /**
      * 代码模板组查询
      *
      * @param query 查询条件
      * @return 查询结果
      */
-    PageInfo<CodeModuleGroup> search(CodeModuleGroupQuery query);
+    PageInfo<CodeTemplateGroup> search(CodeTemplateGroupQuery query);
 
 
 

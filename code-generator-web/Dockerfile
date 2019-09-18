@@ -1,12 +1,8 @@
 # 建议生产使用，ref: http://blog.tenxcloud.com/?p=1894
 FROM fabric8/java-jboss-openjdk8-jdk
 
-
-ENV LANG en_US.UTF-8
-
-ENV LANGUAGE en_US:en
-
-ENV LC_ALL en_US.UTF-8
+#中文
+ENV LANG zh_CN.utf8
 
 WORKDIR /opt/code-generator
 #将当前jar 复制到opt根目录下

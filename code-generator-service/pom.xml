@@ -8,9 +8,9 @@
         <version>1.0.0</version>
     </parent>
 
-    <artifactId>code-generator-web</artifactId>
+    <artifactId>code-generator-service</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>code-generator-web</name>
+    <name>code-generator-service</name>
     <description>web 版代码生成器</description>
 
 

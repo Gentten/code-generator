@@ -18,7 +18,7 @@
     <modules>
         <!-- 工具类/公共-->
         <module>code-generator-common</module>
-        <module>code-generator-web</module>
+        <module>code-generator-service</module>
     </modules>
 
     <!-- 统一的配置，在spring-boot-dependencies中没有的或者需要覆盖的-->

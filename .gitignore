@@ -31,3 +31,4 @@ build/
 .vscode/
 ###maven
 .mvn
+.log

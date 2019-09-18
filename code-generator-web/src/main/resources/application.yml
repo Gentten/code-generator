@@ -22,3 +22,9 @@ spring:
     prefix: classpath:/templates/
     encoding: UTF-8
     suffix: .java
+
+  http:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true

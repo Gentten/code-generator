@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import [(${importName})];
 [/]
 /**
- * [(${model.comment})]创建增加表单封装  并且根据不同的校验组检验不同的数据
+ * [(${model.comment})] ([(${model.className})])创建增加表单封装  并且根据不同的校验组检验不同的数据
  * 封装前端传递的数据 增加或者是修改
  * 1.@NotNull(groups = {Update.class}, message = MessageConstants.ID_REQUIRED) 表示更新实体时，id不能为空
  * 2.@Null(groups = {Create.class}, message = MessageConstants.ID_MUST_NULL) 表示创建实体时，id必须为空

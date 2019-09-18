@@ -77,7 +77,7 @@ public class ReflectionUtils {
         try {
             result = field.get(obj);
         } catch (IllegalAccessException e) {
-            log.error("不可能抛出的异常" + e.getMessage());
+            log.error("不可能抛出的异常:{}", e.getMessage());
         }
         return result;
     }
@@ -96,7 +96,7 @@ public class ReflectionUtils {
         try {
             field.set(obj, value);
         } catch (IllegalAccessException e) {
-            log.error("不可能抛出的异常" + e.getMessage());
+            log.error("不可能抛出的异常:{}",e.getMessage());
         }
     }
 

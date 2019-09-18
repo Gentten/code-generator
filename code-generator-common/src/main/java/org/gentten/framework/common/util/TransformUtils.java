@@ -24,7 +24,7 @@ public class TransformUtils {
      */
     public static <T extends BaseEntity> T transform(Object source, Class<T> destClass) throws Exception {
 
-        T destObject ;
+        T destObject;
         try {
             destObject = destClass.getDeclaredConstructor().newInstance();
             // getDeclaredFields 只能获取当前的声明的字段，不包含父类
@@ -36,7 +36,7 @@ public class TransformUtils {
                 ReflectionUtils.setFieldValue(destObject, transformFieldName, ReflectionUtils.getFieldValue(source, name));
             }
         } catch (Exception e) {
-            log.error("转化失败：" + source.getClass() + "->" + destClass + "reason:" + e.getMessage());
+            log.error("转化失败：{} to {} ,reason:{}", source.getClass(), destClass, e.getMessage());
             throw e;
         }
         return destObject;

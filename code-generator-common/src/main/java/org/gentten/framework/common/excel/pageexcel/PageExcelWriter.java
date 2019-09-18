@@ -70,10 +70,10 @@ public class PageExcelWriter implements IPageExcelWriter {
             try {
                 //一直获取直到没有下一页
                 do {
-                    log.info(pageNumRead.get() - 1 + "：开始读,当前缓存大小：" + buffer.size());
+                    log.info("页号{}：开始读,当前缓存大小：{}", pageNumRead.get() - 1, buffer.size());
                     pageInfo = PageHelper.startPage(pageNumRead.getAndIncrement(), getSheetSize()).doSelectPageInfo(select);
                     buffer.put(pageInfo);
-                    log.info(pageNumRead.get() - 1 + "：读完成,当前缓存大小：" + buffer.size());
+                    log.info("页号{}：读完成,当前缓存大小:{}", pageNumRead.get() - 1, buffer.size());
 
                 } while (pageInfo.isHasNextPage());
 
@@ -85,11 +85,11 @@ public class PageExcelWriter implements IPageExcelWriter {
 
         // 一直循环直到最后一页也写完
         do {
-            log.info(pageNumWrite.get() + "：开始写,当前缓存大小：" + buffer.size());
+            log.info("页号{}：开始写,当前缓存大小：{}", pageNumWrite.get(), buffer.size());
             //从队列中拿
             onePage = buffer.take();
             excelWriter.write(onePage.getList(), writeSheet);
-            log.info(pageNumWrite.get() + "：写完成,当前缓存大小：" + buffer.size());
+            log.info("页号{}：写完成,当前缓存大小：{}", pageNumWrite.get(), buffer.size());
             outputStream.flush();
             //下一页需要写的
             writeSheet = getNextWriteSheet(pageNumWrite.getAndIncrement(), writeSheet);

@@ -1,7 +1,7 @@
 ﻿# 删除容器
 docker rm -f code-generator
 # 删除镜像
-#docker rmi -f code-generator
+docker rmi -f code-generator
 # 创建镜像
 docker build -t code-generator/code-generator  /opt/code-generator
 # 运行容器

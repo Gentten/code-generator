@@ -49,7 +49,7 @@ public class [(${model.className})]Controller {
 
     @ApiOperation("根据id更新[(${model.comment})]([(${model.className})])")
     @PutMapping("{id}")
-    public R<Boolean> updateById(@PathVariable [(${model.tableId.dataType.name})] id, @Validated(Update.class) @RequestBody [(${model.className})]EditForm form) {
+    public R<Boolean> updateById(@PathVariable [(${model.tableId.dataType.name})] id, @Validated(Update.class) @RequestBody [(${model.className})]EditForm form, @ApiIgnore OperateInfo operateInfo) {
         form.setId(id);
         return R.success([(${model.varName})]Service.updateById(TransformUtils.transform(form, [(${model.className})].class)));
     }

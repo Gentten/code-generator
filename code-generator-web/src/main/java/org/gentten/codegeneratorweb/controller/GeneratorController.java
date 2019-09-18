@@ -79,7 +79,7 @@ public class GeneratorController {
                     .tableId(tableIdOp.orElseThrow(() -> new SysException("表中没有为列名为id的主键")))
                     .build();
             model.setCreateTime(new Date());
-            model.setOperatorName("code-generator");
+            model.setOperatorName(String.format("%s by code-generator-web", userId));
 
             //暂时写死 todo：通过界面选择生成代码模块
             List<CodeTemplate> codeTemplates = codeModuleService.getByGroupId("1171316855797764097");

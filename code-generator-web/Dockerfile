@@ -2,7 +2,7 @@
 FROM fabric8/java-jboss-openjdk8-jdk
 
 #中文
-ENV LANG zh_CN.utf8
+ENV LANG en_US.utf8
 
 WORKDIR /opt/code-generator
 #将当前jar 复制到opt根目录下

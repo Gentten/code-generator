@@ -1,5 +1,6 @@
 package org.gentten.codegeneratorweb.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.gentten.codegeneratorweb.domain.entity.CodeTemplateGroup;
 import org.gentten.codegeneratorweb.domain.form.query.CodeTemplateGroupQuery;
 import org.gentten.codegeneratorweb.mapper.CodeModuleGroupMapper;
@@ -21,6 +22,7 @@ import org.springframework.stereotype.Service;
  * @date : Tue Sep 10 12:52:40 CST 2019
  */
 @Service
+@Slf4j
 public class CodeModuleGroupServiceImpl extends ServiceImpl<CodeModuleGroupMapper, CodeTemplateGroup> implements CodeModuleGroupService {
 
     @Override

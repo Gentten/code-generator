@@ -1,5 +1,6 @@
 package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
+import lombok.extern.slf4j.Slf4j;
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.entity.[(${model.className})];
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]domain.form.query.[(${model.className})]Query;
 import [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/]mapper.[(${model.className})]Mapper;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
  * @author : [(${model.operatorName})]
  * @date : [(${model.createTime})]
  */
+@Slf4j
 @Service
 public class [(${model.className})]ServiceImpl extends ServiceImpl<[(${model.className})]Mapper, [(${model.className})]> implements [(${model.className})]Service {
 

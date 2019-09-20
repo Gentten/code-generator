@@ -51,7 +51,7 @@ export const constantRoutes = [
       path: 'dashboard',
       name: 'Dashboard',
       component: () => import('@/views/dashboard/index'),
-      meta: { title: 'Dashboard', icon: 'dashboard' }
+      meta: { title: '主页', icon: 'dashboard' }
     }]
   },
 
@@ -147,7 +147,18 @@ export const constantRoutes = [
       }
     ]
   },
-
+  {
+    path: '/code-generator',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/tab/index'),
+        name: 'Tab',
+        meta: { title: '代码生成', icon: 'tab' }
+      }
+    ]
+  },
   {
     path: 'external-link',
     component: Layout,

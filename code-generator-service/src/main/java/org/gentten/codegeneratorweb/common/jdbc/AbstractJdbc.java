@@ -58,7 +58,7 @@ public abstract class AbstractJdbc implements Jdbc {
             if (this.password != null) {
                 props.setProperty("password", this.password);
             }
-            conn = DriverManager.getConnection(this.jdbcUrl+"?useSSL=false", props);
+            conn = DriverManager.getConnection(this.jdbcUrl + "?useSSL=false", props);
             validateConnection(conn);
         } catch (ClassNotFoundException e) {
             throw new SysException(String.format("数据库连接失败，找不到驱动[%s]", this.driver), e);
@@ -94,7 +94,8 @@ public abstract class AbstractJdbc implements Jdbc {
             while (resultSet.next()) {
                 tables.add(Table.builder()
                         .name(resultSet.getString("TABLE_NAME"))
-                        .comment(resultSet.getString("REMARKS"))
+                         //去掉换行和回车
+                        .comment(resultSet.getString("REMARKS").replaceAll("[\\n|\\r]", " "))
                         .database(dbname)
                         .build());
             }
@@ -119,7 +120,8 @@ public abstract class AbstractJdbc implements Jdbc {
                 Column column = Column.builder()
                         .index(index)
                         .dataType(DataConverter.toFrontType(resultSet.getInt("DATA_TYPE")))
-                        .comment(resultSet.getString("REMARKS"))
+                        //去掉换行和回车符
+                        .comment(resultSet.getString("REMARKS").replaceAll("[\\n|\\r]", " "))
                         .name(resultSet.getString("COLUMN_NAME"))
                         .isNullable(resultSet.getString("IS_NULLABLE"))
                         .tableName(tableName)

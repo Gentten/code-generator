@@ -16,8 +16,8 @@ public enum JavaType implements IEnum {
      * java类型
      */
     DATE("Date", "java.util.Date;com.fasterxml.jackson.annotation.JsonFormat;org.springframework.format.annotation.DateTimeFormat", "yyyy-MM-dd"),
-    DATE_TIME("Date", "java.util.Date;import com.fasterxml.jackson.annotation.JsonFormat;org.springframework.format.annotation.DateTimeFormat", "yyyy-MM-dd HH:mm:ss"),
-    TIME("Date", "java.util.Date;import com.fasterxml.jackson.annotation.JsonFormat;org.springframework.format.annotation.DateTimeFormat", "HH:mm:ss"),
+    DATE_TIME("Date", "java.util.Date;com.fasterxml.jackson.annotation.JsonFormat;org.springframework.format.annotation.DateTimeFormat", "yyyy-MM-dd HH:mm:ss"),
+    TIME("Date", "java.util.Date;com.fasterxml.jackson.annotation.JsonFormat;org.springframework.format.annotation.DateTimeFormat", "HH:mm:ss"),
     STRING("String"),
     BIG_DECIMAL("BigDecimal", "java.math.BigDecimal"),
     BOOLEAN("Boolean"),
@@ -26,6 +26,9 @@ public enum JavaType implements IEnum {
     LONG("Long");
 
     private String name;
+    /**
+     *  ; 分割
+     */
     private String importPackages;
     private Boolean needImport;
     private String pattern;

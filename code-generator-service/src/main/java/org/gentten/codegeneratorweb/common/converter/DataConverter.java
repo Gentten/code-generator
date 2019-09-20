@@ -6,6 +6,7 @@ import org.gentten.codegeneratorweb.domain.enums.JavaType;
 import org.gentten.codegeneratorweb.domain.metadata.Column;
 import org.gentten.framework.common.util.StringUtils;
 
+import javax.xml.crypto.Data;
 import java.sql.Types;
 
 /**
@@ -37,9 +38,11 @@ public class DataConverter {
             case Types.SMALLINT:
                 return DataType.INTEGER;
             case Types.DATE:
-            case Types.TIME:
-            case Types.TIMESTAMP:
                 return DataType.DATE;
+            case Types.TIME:
+                return DataType.TIME;
+            case Types.TIMESTAMP:
+                return DataType.DATETIME;
             case Types.BOOLEAN:
                 return DataType.BOOLEAN;
             case Types.DECIMAL:
@@ -59,6 +62,8 @@ public class DataConverter {
             case NUMERIC:
             case DECIMAL:
                 return JavaType.BIG_DECIMAL;
+            case TIME:
+                return JavaType.TIME;
             case DATE:
                 return JavaType.DATE;
             case LONG:
@@ -66,7 +71,8 @@ public class DataConverter {
                 return JavaType.LONG;
             case INTEGER:
                 return JavaType.INTEGER;
-
+            case DATETIME:
+                return JavaType.DATE_TIME;
             default:
                 return JavaType.STRING;
         }

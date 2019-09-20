@@ -19,9 +19,9 @@ public enum DataType implements IEnum {
     CHAR("char,对应Character"),
     DECIMAL("decimal,对应BigDecimal"),
     BOOLEAN("boolean,对应Boolean"),
-    DATE("日期,对应Date"),
-    TIME("时间,Date"),
-    DATETIME("日期时间,对应Date"),
+    DATE("日期,对应Date 只有年月日"),
+    TIME("时间,Date,只有时间"),
+    DATETIME("日期时间,对应Date，年月日和时间"),
     TIMESTAMP("时间戳,对应Long"),
     INTEGER("整型类型,对应Integer"),
     //todo:暂时将浮点数字类型统一为对应BigDecimal

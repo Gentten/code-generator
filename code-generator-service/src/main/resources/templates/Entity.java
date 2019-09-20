@@ -22,8 +22,8 @@ import [(${importName})];
 @EqualsAndHashCode(callSuper = false)
 public class [(${model.className})] extends BaseEntity {
     [# th:each = "field:${model.fields}"][# th:if = "${field.dataType.name} eq 'Date'"]
-    //todo: 改成自己需要的字符串转时间格式(spring提供的)
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")[/]
+    //todo: 改成自己需要的字符串转时间格式(spring提供的)默认按照数据库类型对应
+    @JsonFormat(pattern = "[(${field.dataType.pattern})]", timezone = "GMT+8")[/]
     @ApiModelProperty(value = "[(${field.comment})]")
     private [(${field.dataType.name})] [(${field.name})];
     [/]

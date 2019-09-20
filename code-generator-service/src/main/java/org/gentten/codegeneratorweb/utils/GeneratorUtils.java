@@ -40,9 +40,9 @@ public class GeneratorUtils {
     /**
      * 通过领域对象生成代码  /userId/id 为生成文件保存的路径
      *
-     * @param model       领域对象
-     * @param userId      用户id
-     * @param id          id
+     * @param model         领域对象
+     * @param userId        用户id
+     * @param id            id
      * @param codeTemplates 代码模板
      */
     public void generatorCodeByModel(Model model, String userId, String id, CodeTemplate... codeTemplates) {
@@ -82,9 +82,9 @@ public class GeneratorUtils {
 
     private String getSaveName(CodeTemplate codeTemplate) {
         if (codeTemplate.getIsContainsName()) {
-            return codeTemplate.getModel().getClassName() + codeTemplate.getCodeTemplateName() + "."+codeTemplate.getFileSuffix();
+            return codeTemplate.getModel().getClassName() + codeTemplate.getCodeTemplateName() + "." + codeTemplate.getFileSuffix();
         } else {
-            return codeTemplate.getModel().getClassName() + "."+codeTemplate.getFileSuffix();
+            return codeTemplate.getModel().getClassName() + "." + codeTemplate.getFileSuffix();
         }
     }
 
@@ -93,7 +93,9 @@ public class GeneratorUtils {
         return fieldList
                 .stream()
                 .filter(field -> field.getDataType().getNeedImport())
-                .map(field -> field.getDataType().getPackageName())
+                .map(field -> field.getDataType().getImportPackages().split(";"))
+                //扁平化
+                .flatMap(Arrays::stream)
                 .distinct()
                 .collect(Collectors.toList());
     }
@@ -122,8 +124,8 @@ public class GeneratorUtils {
      * 获取某个模块生成代码的保存路径（带包名和划分模块名），去保存使用
      *
      * @param codeTemplate ，codeModule
-     * @param userId     用户id
-     * @param id         模块或者模板组id 用于临时文件夹的区分
+     * @param userId       用户id
+     * @param id           模块或者模板组id 用于临时文件夹的区分
      * @return 路径
      */
     public String getFileSavePath(CodeTemplate codeTemplate, String userId, String id) {

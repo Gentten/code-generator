@@ -65,8 +65,6 @@ public class GeneratorController {
             //获取主键为id列
             Optional<Field> tableIdOp = fieldList.stream().filter(field -> "id".equals(field.getName())).findAny();
 
-            //获取需要导包的包名 需要去重
-            List<String> needImport = fieldList.stream().map(field -> field.getDataType().getPackageName()).distinct().collect(Collectors.toList());
             //构建model
             Model model = Model.builder()
                     .className(StringUtils.capitalize(StringUtils.camelCaseName(table.getName())))

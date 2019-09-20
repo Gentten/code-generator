@@ -5,6 +5,7 @@ import org.gentten.codegeneratorweb.common.jdbc.MysqlJdbc;
 import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
 import org.gentten.codegeneratorweb.domain.entity.Field;
 import org.gentten.codegeneratorweb.domain.entity.Model;
+import org.gentten.codegeneratorweb.domain.enums.JavaType;
 import org.gentten.codegeneratorweb.domain.metadata.Column;
 import org.gentten.codegeneratorweb.domain.metadata.Table;
 import org.gentten.framework.common.util.StringUtils;
@@ -19,6 +20,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -43,7 +45,14 @@ public class TestController {
         List<Column> columns = mysqlJdbc.getColumns("code-generator", "test");
         List<Field> fieldList = columns.stream().map(DataConverter::getFiledByColumn).collect(Collectors.toList());
         //获取需要导包的包名 需要去重
-        List<String> needImport = fieldList.stream().map(field -> field.getDataType().getPackageName()).distinct().collect(Collectors.toList());
+        List<String> needImport = fieldList
+                .stream()
+                .filter(field -> field.getDataType().getNeedImport())
+                .map(field -> field.getDataType().getImportPackages().split(";"))
+                //扁平化
+                .flatMap(Arrays::stream)
+                .distinct()
+                .collect(Collectors.toList());
         Optional<Table> tableOptional = tables.stream().filter(table -> "test".equals(table.getName())).findAny();
         tableOptional.ifPresent(table -> {
                     //1、领域对象

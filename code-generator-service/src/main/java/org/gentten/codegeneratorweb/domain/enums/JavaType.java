@@ -15,7 +15,7 @@ public enum JavaType implements IEnum {
     /**
      * java类型
      */
-    DATE("Date", "java.util.Date"),
+    DATE("Date", "java.util.Date;\nimport com.fasterxml.jackson.annotation.JsonFormat;\nimport org.springframework.format.annotation.DateTimeFormat"),
     STRING("String"),
     BIG_DECIMAL("BigDecimal", "java.math.BigDecimal"),
     BOOLEAN("Boolean"),

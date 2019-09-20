@@ -49,7 +49,7 @@ public class GeneratorController {
 
     @PostMapping("/codeModuleGroup_1171316855797764097/{userId}")
     @ApiOperation("act-framework1.0.0增删改查，根据数据库连接生成代码并下载\n" +
-            "（要求表有一个字段名为id的主键,默认生成实体是继承OperatorInfo，注意自行选择哪个基础实体,以及去掉和继承实体重复的字段)")
+            "（要求表有一个字段名为id的主键,默认生成实体是继承BaseEntity，注意自行选择哪个基础实体,以及去掉和继承实体重复的字段)")
     public void generatorAndDownload(@PathVariable String userId, @Validated @RequestBody CodeGeneratorForm form, @ApiIgnore HttpServletResponse response) throws Exception {
         //连接数据库
         MysqlJdbc mysqlJdbc = new MysqlJdbc(form.getJdbcUrl() + "/" + form.getDbName(), form.getUsername(), form.getPassword());

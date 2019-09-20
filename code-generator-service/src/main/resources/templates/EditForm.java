@@ -22,10 +22,12 @@ import [(${importName})];
 @Data
 @ApiModel(value = "[(${model.comment})]([(${model.className})])编辑创建表单")
 public class [(${model.className})]EditForm {
-
-    [# th:each = "field:${model.fields}"]
+    [# th:each = "field:${model.fields}"][# th:if = "${field.dataType.name} eq 'Date'"]
+    //todo: 改成自己需要的字符串转时间格式(spring提供的)默认年月日
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //todo: 改成自己需要的时间序列化转化格式（jackson）默认年月日
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")[/]
     @ApiModelProperty(value = "[(${field.comment})]")
     private [(${field.dataType.name})] [(${field.name})];
-
     [/]
 }

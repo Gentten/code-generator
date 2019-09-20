@@ -17,10 +17,12 @@ import [(${importName})];
 @Data
 @ApiModel(value = "[(${model.comment})]([(${model.className})])简单比较查询")
 public class [(${model.className})]Search{
-
-    [# th:each = "field:${model.fields}"]
-    @ApiModelProperty(value = "比较查询条件：[(${field.comment})]")
+    [# th:each = "field:${model.fields}"][# th:if = "${field.dataType.name} eq 'Date'"]
+    //todo: 改成自己需要的字符串转时间格式(spring提供的)默认年月日
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    //todo: 改成自己需要的时间序列化转化格式（jackson）
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")[/]
+    @ApiModelProperty(value = "[(${field.comment})]")
     private [(${field.dataType.name})] [(${field.name})];
-
     [/]
 }

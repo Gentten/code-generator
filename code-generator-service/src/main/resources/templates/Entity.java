@@ -1,11 +1,9 @@
 package [(${model.packageName})].[# th:if="${model.moduleName}"][(${model.moduleName})].[/][(${module.packageName})];
 
-import com.act.framework.common.domain.base.BaseOperatorEntity;
+import com.act.framework.common.domain.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 [# th:each = "importName:${imports}" th:if="${importName}"]
 import [(${importName})];
@@ -22,10 +20,11 @@ import [(${importName})];
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class [(${model.className})] extends BaseOperatorEntity {
-    [# th:each = "field:${model.fields}"]
+public class [(${model.className})] extends BaseEntity {
+    [# th:each = "field:${model.fields}"][# th:if = "${field.dataType.name} eq 'Date'"]
+    //todo: 改成自己需要的字符串转时间格式(spring提供的)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")[/]
     @ApiModelProperty(value = "[(${field.comment})]")
     private [(${field.dataType.name})] [(${field.name})];
-
     [/]
 }

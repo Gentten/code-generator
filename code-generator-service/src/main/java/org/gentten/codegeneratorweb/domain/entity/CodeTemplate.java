@@ -42,7 +42,7 @@ public class CodeTemplate extends BaseOperatorEntity {
      * 以下未非数据库字段
      */
     @JsonIgnore
-    @ApiModelProperty("领域对象")
+    @ApiModelProperty("领域对象，模型")
     @TableField(exist = false)
     private Model model;
 }

@@ -9,13 +9,13 @@ import [(${importName})];
 [/]
 /**
  * [(${model.comment})]([(${model.className})])查询封装简单比较查询条件封装
- * 简单的逐字段eq条件查询
+ * 简单的逐字段eq条件查询如果是字符串时则为like
  *
  * @author : [(${model.operatorName})]
  * @date : [(${model.createTime})]
  */
 @Data
-@ApiModel(value = "[(${model.comment})]([(${model.className})])简单比较查询")
+@ApiModel(value = "[(${model.comment})]([(${model.className})])简单比较查询，如果是字符串时则为like")
 public class [(${model.className})]Search{
     [# th:each = "field:${model.fields}"][# th:if = "${field.dataType.name} eq 'Date'"]
     //todo: 改成自己需要的字符串转时间格式(spring提供的)默认按照数据库类型对应

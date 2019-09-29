@@ -39,7 +39,7 @@ public class [(${model.className})]Query extends BaseQuery<[(${model.className})
      * 此处可替换成其他包装查询字段，但变量名需要定义为search 与前端约定的。然后在buildWrapper 实现自己多字段复杂查询
      * 需要注意   column 是数据库字段名字
      */
-    @ApiModelProperty(value = "查询参数（以and 连接条件并以eq的形式）")
+    @ApiModelProperty(value = "查询参数（以and 连接条件并以eq的形式(如果是字符串时则为like)）")
     private [(${model.className})]Search search;
 
     @Override
@@ -50,7 +50,11 @@ public class [(${model.className})]Query extends BaseQuery<[(${model.className})
             Map<String, Object> searchMap = getSearchFields(search);
             if (!EmptyUtils.isEmpty(searchMap)) {
                 searchMap.forEach((column, value) -> {
-                    queryWrapper.eq(value != null, column, value);
+                    if (value instanceof String) {
+                        queryWrapper.like(column, value);
+                    } else {
+                        queryWrapper.eq(value != null, column, value);
+                    }
                 });
             }
         }
@@ -85,6 +89,11 @@ public class [(${model.className})]Query extends BaseQuery<[(${model.className})
                 res.put(getTableColumnName(field), ReflectionUtils.getFieldValue(search, field.getName()));
             }
         });
+        Sorter sorter;
+        String order;
+        if ((sorter = this.getSorter()) != null) {
+        queryWrapper.orderBy(true, (order = sorter.getOrder()) != null && order.toLowerCase().contains("asc"), StringUtils.humpConvertLowCase(sorter.getField()));
+        }
         return res;
     }
 

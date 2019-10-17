@@ -65,6 +65,8 @@ public class [(${model.className})]Query extends BaseQuery<[(${model.className})
         if ((sorter = this.getSorter()) != null) {
             queryWrapper.orderBy(true, (order = sorter.getOrder()) != null && order.toLowerCase().contains("asc"), StringUtils.humpConvertLowCase(sorter.getField()));
         }
+        //默认按id降序
+        queryWrapper.orderByDesc("id");
         return queryWrapper;
     }
 
@@ -89,13 +91,6 @@ public class [(${model.className})]Query extends BaseQuery<[(${model.className})
                 res.put(getTableColumnName(field), ReflectionUtils.getFieldValue(search, field.getName()));
             }
         });
-        Sorter sorter;
-        String order;
-        if ((sorter = this.getSorter()) != null) {
-        queryWrapper.orderBy(true, (order = sorter.getOrder()) != null && order.toLowerCase().contains("asc"), StringUtils.humpConvertLowCase(sorter.getField()));
-        }
-        //默认按id降序
-        queryWrapper.orderByDesc("id");
         return res;
     }
 

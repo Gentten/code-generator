@@ -1,5 +1,7 @@
 package org.gentten.codegeneratorweb.mapper;
 
+import org.apache.ibatis.annotations.Result;
+import org.apache.ibatis.annotations.Results;
 import org.gentten.codegeneratorweb.domain.entity.CodeTemplateGroup;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,4 +20,10 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface CodeModuleGroupMapper extends BaseMapper<CodeTemplateGroup> {
 
+    @Results(id = "test", value = {
+            @Result(column = "xxx", property = "xx"),
+            @Result(column = "xx", property = "xx"),
+            @Result(column = "xx", property = "xxx"),
+    })
+    void test();
 }

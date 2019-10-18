@@ -34,6 +34,7 @@ import java.util.Map;
  */
 @Data
 @ApiModel(value = "[(${model.comment})]([(${model.className})])编辑创建表单")
+@EqualsAndHashCode(callSuper = true)
 public class [(${model.className})]Query extends BaseQuery<[(${model.className})]> {
     /**
      * 此处可替换成其他包装查询字段，但变量名需要定义为search 与前端约定的。然后在buildWrapper 实现自己多字段复杂查询

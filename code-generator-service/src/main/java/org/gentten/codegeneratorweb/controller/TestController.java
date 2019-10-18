@@ -71,7 +71,7 @@ public class TestController {
                     WebUtils.setDownloadHeader(response, "TestEntity.java");
 
                     try (PrintWriter writer = response.getWriter()) {
-                        templateEngine.process("Search", context, writer);
+                        templateEngine.process("Entity", context, writer);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

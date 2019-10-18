@@ -1,5 +1,6 @@
 package org.gentten.codegeneratorweb.domain.entity;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.*;
 import org.gentten.codegeneratorweb.domain.enums.JavaType;
 import org.gentten.framework.common.domain.base.BaseOperatorEntity;
@@ -35,5 +36,9 @@ public class Field extends BaseOperatorEntity {
 
     @ApiModelProperty(value = "是否必须")
     private Boolean require;
+
+    @ApiModelProperty(value = "数据库列名，默认驼峰转下滑线")
+    @TableField(exist = false)
+    private String columnName;
 
 }

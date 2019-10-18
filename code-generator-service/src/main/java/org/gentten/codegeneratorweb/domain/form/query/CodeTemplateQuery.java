@@ -2,24 +2,16 @@ package org.gentten.codegeneratorweb.domain.form.query;
 
 
 import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import org.gentten.codegeneratorweb.domain.form.search.CodeModuleSearch;
-import org.gentten.framework.common.domain.base.BaseEntity;
+import org.gentten.codegeneratorweb.utils.QueryUtils;
 import org.gentten.framework.common.domain.query.BaseQuery;
 import org.gentten.framework.common.domain.query.pagination.Sorter;
 import org.gentten.framework.common.util.EmptyUtils;
-import org.gentten.framework.common.util.ReflectionUtils;
 import org.gentten.framework.common.util.StringUtils;
 
-import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -41,14 +33,14 @@ public class CodeTemplateQuery extends BaseQuery<CodeTemplate> {
      * 需要注意   column 是数据库字段名字
      */
     @ApiModelProperty(value = "查询参数（以and 连接条件并以eq的形式）")
-    private CodeModuleSearch search;
+    private CodeTemplate eq;
 
     @Override
     public QueryWrapper<CodeTemplate> buildWrapper() {
         QueryWrapper<CodeTemplate> queryWrapper = new QueryWrapper<>();
         //查询条件
-        if (search != null) {
-            Map<String, Object> searchMap = getSearchFields(search);
+        if (eq != null) {
+            Map<String, Object> searchMap = QueryUtils.getColumnMapFormEntity(eq);
             if (!EmptyUtils.isEmpty(searchMap)) {
                 searchMap.forEach((column, value) -> {
                     queryWrapper.eq(value != null, column, value);
@@ -63,44 +55,6 @@ public class CodeTemplateQuery extends BaseQuery<CodeTemplate> {
             queryWrapper.orderBy(true, (order = sorter.getOrder()) != null && order.toLowerCase().contains("asc"), StringUtils.humpConvertLowCase(sorter.getField()));
         }
         return queryWrapper;
-    }
-
-    /**
-     * todo：此方法暂时只支持继承BaseEntity的 ，其他会存在问题（需要类字段名到数据库字段名的转换）
-     *
-     * @param search
-     * @return
-     */
-    private Map<String, Object> getSearchFields(Object search) {
-        Class<?> searchClass = search.getClass();
-        List<Field> fieldLis;
-        if (search instanceof BaseEntity) {
-            fieldLis = ReflectionUtils.getEntityFields((BaseEntity) search);
-        } else {
-            fieldLis = Arrays.asList(searchClass.getDeclaredFields());
-        }
-        HashMap<String, Object> res = new HashMap<>();
-        fieldLis.parallelStream().forEach(field -> {
-            // 去掉序列化id
-            if (!"serialVersionUID".equals(field.getName())) {
-                res.put(getTableColumnName(field), ReflectionUtils.getFieldValue(search, field.getName()));
-            }
-        });
-        return res;
-    }
-
-    private String getTableColumnName(Field field) {
-        TableField annotationFiled = field.getAnnotation(TableField.class);
-        TableId annotationId = field.getAnnotation(TableId.class);
-        String res;
-        if (annotationFiled != null && !EmptyUtils.isEmpty(res = annotationFiled.value())) {
-            return res;
-        } else if (annotationId != null && !EmptyUtils.isEmpty(res = annotationId.value())) {
-            return res;
-        } else {
-            //驼峰转下划线
-            return StringUtils.humpConvertLowCase(field.getName());
-        }
     }
 
 }

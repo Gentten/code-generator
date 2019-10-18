@@ -89,6 +89,7 @@ public class DataConverter {
                 .comment(column.getComment())
                 .dataType(DataConverter.toJavaType(column.getDataType()))
                 .name(StringUtils.camelCaseName(column.getName()))
+                .columnName(column.getName())
                 .build();
     }
 

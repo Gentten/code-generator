@@ -3,7 +3,6 @@ package org.gentten.codegeneratorweb.domain.entity;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import org.gentten.codegeneratorweb.domain.metadata.Column;
 import org.gentten.framework.common.domain.base.BaseOperatorEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

@@ -1,4 +1,3 @@
-debug: true
 spring:
   datasource:
     druid: #参考官方分析性数据库的配置，后续根据业务修改

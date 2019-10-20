@@ -19,6 +19,7 @@ import java.util.Map;
  * @date : 2019-10-18 17:03
  */
 public class QueryUtils {
+    private static final String serialVersionUID = "serialVersionUID";
 
     /**
      * 将实体中的字段找到mybatis-plus 指定的列名
@@ -26,7 +27,7 @@ public class QueryUtils {
      * @param field 字段
      * @return 列名
      */
-    public static String getTableColumnName(Field field) {
+    public static String getColumnName(Field field) {
         TableField annotationFiled = field.getAnnotation(TableField.class);
         TableId annotationId = field.getAnnotation(TableId.class);
         String res;
@@ -44,29 +45,31 @@ public class QueryUtils {
      * @param entityQuery 实体查询数据
      * @return 返回列名与值集合
      */
-    public static <T extends BaseEntity> Map<String, Object> getColumnMapFormEntity(T entityQuery) {
-        Class<?> searchClass = entityQuery.getClass();
+    public static <T extends BaseEntity> Map<String, Object> entity2ColumnMap(T entityQuery) {
         List<Field> fieldLis;
         fieldLis = ReflectionUtils.getEntityFields(entityQuery);
-        HashMap<String, Object> res = new HashMap<>();
-        fieldLis.parallelStream().filter(QueryUtils::filterNotColumn).forEach(field -> {
-            // 去掉序列化id
-            if (!"".equals(field.getName())) {
-                res.put(QueryUtils.getTableColumnName(field), ReflectionUtils.getFieldValue(entityQuery, field.getName()));
-            }
-        });
+        HashMap<String, Object> res = new HashMap<>(16);
+        fieldLis.parallelStream()
+                //过滤掉非数据库字段
+                .filter(QueryUtils::columnExist)
+                .forEach(field -> res.put(QueryUtils.getColumnName(field), ReflectionUtils.getFieldValue(entityQuery, field.getName())));
         return res;
     }
 
     /**
-     * 过滤掉非数据库字段
+     * 是否为数据库字段
      *
      * @param field 实体中字段包含父类的
      * @return 是数据库中字段为true
      */
-    private static boolean filterNotColumn(Field field) {
-        if ("serialVersionUID".equals(field.getName())) {
+    private static boolean columnExist(Field field) {
+        if (serialVersionUID.equals(field.getName())) {
             return false;
+        }
+        //获取tableFiled注解  tableFiled exist属性指定了是否为数据库字段
+        TableField annotationFiled = field.getAnnotation(TableField.class);
+        if (annotationFiled != null) {
+            return annotationFiled.exist();
         }
         return true;
     }

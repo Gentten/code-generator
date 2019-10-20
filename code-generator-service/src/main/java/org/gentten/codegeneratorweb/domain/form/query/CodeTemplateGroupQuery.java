@@ -41,7 +41,7 @@ public class CodeTemplateGroupQuery extends BaseQuery<CodeTemplateGroup> {
         QueryWrapper<CodeTemplateGroup> queryWrapper = new QueryWrapper<>();
         //eq查询条件
         if (eq != null) {
-            Map<String, Object> searchMap = QueryUtils.getColumnMapFormEntity(eq);
+            Map<String, Object> searchMap = QueryUtils.entity2ColumnMap(eq);
             queryWrapper.allEq(searchMap, false);
         }
         //第一个参数表示是否拼接到最后生成sql 语句中，即true 时起作用， 注意驼峰原则转下划线

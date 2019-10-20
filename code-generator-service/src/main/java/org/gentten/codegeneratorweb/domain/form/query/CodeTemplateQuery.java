@@ -38,14 +38,10 @@ public class CodeTemplateQuery extends BaseQuery<CodeTemplate> {
     @Override
     public QueryWrapper<CodeTemplate> buildWrapper() {
         QueryWrapper<CodeTemplate> queryWrapper = new QueryWrapper<>();
-        //查询条件
+        //eq查询条件
         if (eq != null) {
-            Map<String, Object> searchMap = QueryUtils.getColumnMapFormEntity(eq);
-            if (!EmptyUtils.isEmpty(searchMap)) {
-                searchMap.forEach((column, value) -> {
-                    queryWrapper.eq(value != null, column, value);
-                });
-            }
+            Map<String, Object> searchMap = QueryUtils.entity2ColumnMap(eq);
+            queryWrapper.allEq(searchMap, false);
         }
         //第一个参数表示是否拼接到最后生成sql 语句中，即true 时起作用， 注意驼峰原则转下划线
         // 单字段排序

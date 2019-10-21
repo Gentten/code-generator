@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.gentten.codegeneratorweb.common.converter.DataConverter;
+import org.gentten.codegeneratorweb.common.converter.DataTypeConverter;
 import org.gentten.codegeneratorweb.domain.metadata.Column;
 import org.gentten.codegeneratorweb.domain.metadata.Table;
 import org.gentten.framework.common.exception.SysException;
@@ -119,7 +119,7 @@ public abstract class AbstractJdbc implements Jdbc {
             while (resultSet.next()) {
                 Column column = Column.builder()
                         .index(index)
-                        .dataType(DataConverter.toFrontType(resultSet.getInt("DATA_TYPE")))
+                        .dataType(DataTypeConverter.toFrontType(resultSet.getInt("DATA_TYPE")))
                         //去掉换行和回车符
                         .comment(resultSet.getString("REMARKS").replaceAll("[\\n|\\r]", " "))
                         .name(resultSet.getString("COLUMN_NAME"))

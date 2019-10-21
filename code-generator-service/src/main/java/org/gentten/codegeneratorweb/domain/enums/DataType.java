@@ -30,11 +30,8 @@ public enum DataType implements IEnum {
     /**
      * 说明，注释
      */
-    private String comment;
-
-
     private DataType(String comment) {
-        this.comment = comment;
+
     }
 
     @Override

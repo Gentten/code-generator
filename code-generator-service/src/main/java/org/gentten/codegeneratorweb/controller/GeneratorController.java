@@ -3,7 +3,7 @@ package org.gentten.codegeneratorweb.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
-import org.gentten.codegeneratorweb.common.converter.DataConverter;
+import org.gentten.codegeneratorweb.common.converter.DataTypeConverter;
 import org.gentten.codegeneratorweb.common.jdbc.MysqlJdbc;
 import org.gentten.codegeneratorweb.domain.entity.CodeTemplate;
 import org.gentten.codegeneratorweb.domain.entity.Field;
@@ -61,7 +61,7 @@ public class GeneratorController {
             //获取表字段信息
             Table table = tableOptional.get();
             List<Column> columns = mysqlJdbc.getColumns(form.getDbName(), table.getName());
-            List<Field> fieldList = columns.stream().map(DataConverter::getFiledByColumn).collect(Collectors.toList());
+            List<Field> fieldList = columns.stream().map(DataTypeConverter::getFiledByColumn).collect(Collectors.toList());
             //获取主键为id列
             Optional<Field> tableIdOp = fieldList.stream().filter(field -> "id".equals(field.getName())).findAny();
 

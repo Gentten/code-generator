@@ -6,7 +6,6 @@ import org.gentten.codegeneratorweb.domain.enums.JavaType;
 import org.gentten.codegeneratorweb.domain.metadata.Column;
 import org.gentten.framework.common.util.StringUtils;
 
-import javax.xml.crypto.Data;
 import java.sql.Types;
 
 /**
@@ -15,7 +14,7 @@ import java.sql.Types;
  * @author : duanzhiqiang
  * @date : 2019-09-09 10:10
  */
-public class DataConverter {
+public class DataTypeConverter {
     /**
      * 数据库类型转成系统支持的类型
      *
@@ -87,7 +86,8 @@ public class DataConverter {
     public static Field getFiledByColumn(Column column) {
         return Field.builder()
                 .comment(column.getComment())
-                .dataType(DataConverter.toJavaType(column.getDataType()))
+                .dataType(column.getDataType())
+                .javaType(DataTypeConverter.toJavaType(column.getDataType()))
                 .name(StringUtils.camelCaseName(column.getName()))
                 .columnName(column.getName())
                 .build();

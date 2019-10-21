@@ -19,7 +19,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface [(${model.className})]Mapper extends BaseMapper<[(${model.className})]> {
 
     @Results(id = "test", value = {[# th:each = "field:${model.fields}"]
-        @Result(column = "field.columnName", property = "field.name"),[/]
+        @Result(column = "[(${field.columnName})]", property = "[(${field.name})]"),[/]
     })
     void test();
 }

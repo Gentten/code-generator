@@ -92,8 +92,8 @@ public class GeneratorUtils {
 
         return fieldList
                 .stream()
-                .filter(field -> field.getDataType().getNeedImport())
-                .map(field -> field.getDataType().getImportPackages().split(";"))
+                .filter(field -> field.getJavaType().getNeedImport())
+                .map(field -> field.getJavaType().getImportPackages().split(";"))
                 //扁平化
                 .flatMap(Arrays::stream)
                 .distinct()
@@ -147,7 +147,7 @@ public class GeneratorUtils {
      * @param buffer      buffer
      * @param packageName 包名
      */
-    public static void appendPackage(StringBuffer buffer, String packageName) {
+    private static void appendPackage(StringBuffer buffer, String packageName) {
         if (StringUtils.isNotBlank(packageName)) {
 
             String[] paths = packageName.split("\\.");
@@ -163,82 +163,9 @@ public class GeneratorUtils {
      * @param buffer     buffer
      * @param moduleName 模块
      */
-    public static void appendModule(StringBuffer buffer, String moduleName) {
+    private static void appendModule(StringBuffer buffer, String moduleName) {
         if (StringUtils.isNotBlank(moduleName)) {
             buffer.append(File.separator).append(moduleName);
         }
-    }
-
-    /**
-     * 拼接上entity保存路径根目录
-     *
-     * @param path path
-     */
-    public static String appendEntity(String path) {
-        if (StringUtils.isNotBlank(path)) {
-            path = path + File.separator + "domain" + File.separator + "entity";
-        }
-        return path;
-    }
-
-    /**
-     * 拼接上表单保存路径根目录
-     *
-     * @param path path
-     * @param type edit/query/search
-     */
-    public static String appendForm(String path, String type) {
-        if (StringUtils.isNotBlank(path)) {
-            path = path + File.separator + "domain" + File.separator + "form" + File.separator + type;
-        }
-        return path;
-    }
-
-    /**
-     * 拼接上controller保存路径根目录
-     *
-     * @param path path
-     */
-    public static String appendController(String path) {
-        if (StringUtils.isNotBlank(path)) {
-            path = path + File.separator + "controller";
-        }
-        return path;
-    }
-
-    /**
-     * 拼接上mapper保存路径根目录
-     *
-     * @param path path
-     */
-    public static String appendMapper(String path) {
-        if (StringUtils.isNotBlank(path)) {
-            path = path + File.separator + "controller";
-        }
-        return path;
-    }
-
-    /**
-     * 拼接上Service保存路径根目录
-     *
-     * @param path path
-     */
-    public static String appendService(String path) {
-        if (StringUtils.isNotBlank(path)) {
-            path = path + File.separator + "service";
-        }
-        return path;
-    }
-
-    /**
-     * 拼接上serviceImpl保存路径根目录
-     *
-     * @param path path
-     */
-    public static String appendServiceImpl(String path) {
-        if (StringUtils.isNotBlank(path)) {
-            path = path + File.separator + "service" + File.separator + "impl";
-        }
-        return path;
     }
 }

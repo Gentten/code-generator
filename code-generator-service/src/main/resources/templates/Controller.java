@@ -49,20 +49,20 @@ public class [(${model.className})]Controller {
 
     @ApiOperation("根据id更新[(${model.comment})]([(${model.className})])")
     @PutMapping("{id}")
-    public R<Boolean> updateById(@PathVariable [(${model.tableId.dataType.name})] id, @Validated(Update.class) @RequestBody [(${model.className})]EditForm form, @ApiIgnore OperateInfo operateInfo) {
+    public R<Boolean> updateById(@PathVariable [(${model.tableId.javaType.name})] id, @Validated(Update.class) @RequestBody [(${model.className})]EditForm form, @ApiIgnore OperateInfo operateInfo) {
         form.setId(id);
         return R.success([(${model.varName})]Service.updateById(TransformUtils.transform(form, [(${model.className})].class)));
     }
 
     @ApiOperation("[(${model.comment})]([(${model.className})])删除，根据ID集合(支持批量删除，如 /menu/1,2,3 逗号隔开 删除id为1和2和3的),需要注意的是不同游览器对url长度限制不一样，建议限制顶多删除一页的数据")
     @DeleteMapping("{ids}")
-    public R<Boolean> deleteByIds(@PathVariable List<[(${model.tableId.dataType.name})]> ids, @ApiIgnore OperateInfo operateInfo) {
+    public R<Boolean> deleteByIds(@PathVariable List<[(${model.tableId.javaType.name})]> ids, @ApiIgnore OperateInfo operateInfo) {
         return R.success([(${model.varName})]Service.removeByIds(ids));
     }
 
     @ApiOperation("根据ID获取[(${model.comment})]([(${model.className})])记录")
     @GetMapping("{id}")
-    public R<[(${model.className})]> searchById(@PathVariable [(${model.tableId.dataType.name})] id) {
+    public R<[(${model.className})]> searchById(@PathVariable [(${model.tableId.javaType.name})] id) {
         return R.success([(${model.varName})]Service.getById(id));
     }
 }

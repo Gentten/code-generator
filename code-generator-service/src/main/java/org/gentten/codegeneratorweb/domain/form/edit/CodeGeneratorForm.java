@@ -11,7 +11,7 @@ import javax.validation.constraints.NotEmpty;
  * @date : 2019-09-09 16:59
  */
 @Data
-@ApiModel("通过数据连接生成代码表单")
+@ApiModel("通过数据库连接生成代码表单")
 public class CodeGeneratorForm {
     @NotEmpty
     @ApiModelProperty(value = "数据库连接,目前只支持mysql", example = "jdbc:mysql://localhost:3306", required = true)

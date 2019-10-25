@@ -27,10 +27,16 @@ public enum JavaType implements IEnum {
 
     private String name;
     /**
-     *  ; 分割
+     * 包名; 分割
      */
     private String importPackages;
+    /**
+     * 是否需要导包
+     */
     private Boolean needImport;
+    /**
+     * 注解的format
+     */
     private String pattern;
 
     JavaType(String name, String importPackages, String pattern) {

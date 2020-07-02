@@ -47,7 +47,7 @@
         <!-- json 转化-->
         <jackson-dataformat-yaml.version>2.9.8</jackson-dataformat-yaml.version>
         <!--  连接器      -->
-        <mysql-connector-java.version>8.0.13</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <!--      spring boot监控  -->
         <spring-boot-admin>2.1.6</spring-boot-admin>
         <!--   mapstruct vo  dto 之间的转化-->
